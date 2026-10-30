@@ -7,202 +7,214 @@
 <title>Ozan İskender · İnşaat Mühendisi — Konsept</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #111214;
-    --bg-2: #17181b;
-    --bg-3: #1d1e22;
-    --concrete: #2a2b2f;
-    --text: #ece8e1;
-    --text-2: rgba(236,232,225,.7);
-    --muted: #8f8a82;
-    --copper: #c0845a;
-    --copper-soft: #d9a57d;
-    --line: rgba(236,232,225,.12);
-    --line-copper: rgba(192,132,90,.35);
-    --serif: "Instrument Serif", Georgia, serif;
+    --bg: #0d0e0f;
+    --bg-2: #131416;
+    --bg-3: #191a1d;
+    --text: #eceae6;
+    --text-2: rgba(236,234,230,.68);
+    --muted: #85827c;
+    --rust: #d2572c;
+    --rust-soft: #e8825c;
+    --line: rgba(236,234,230,.12);
+    --paper: #e4e0d9;
+    --paper-2: #d8d3cb;
+    --ink: #141516;
+    --cond: "Barlow Condensed", "Arial Narrow", sans-serif;
     --mono: "IBM Plex Mono", ui-monospace, monospace;
     --sans: "Inter", system-ui, sans-serif;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { font-family: var(--sans); font-weight: 300; background: var(--bg); color: var(--text); line-height: 1.65; }
+  body { font-family: var(--sans); font-weight: 300; background: var(--bg); color: var(--text); line-height: 1.6; }
   img { display: block; max-width: 100%; }
   a { color: inherit; text-decoration: none; }
-  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+  .wrap { max-width: 1320px; margin: 0 auto; padding: 0 40px; }
   .mono { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; }
-  .tag { font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--copper); border: 1px dashed var(--line-copper); padding: 4px 8px; display: inline-block; }
+  .cond { font-family: var(--cond); font-weight: 700; text-transform: uppercase; line-height: .96; letter-spacing: .005em; }
+  .tag { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--rust-soft); border: 1px dashed rgba(210,87,44,.5); padding: 4px 8px; display: inline-block; }
 
-  /* Header */
+  /* Header (Elliman: centered logo) */
   header { position: absolute; inset: 0 0 auto 0; z-index: 10; }
-  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 100px; }
-  .brand { display: flex; flex-direction: column; gap: 6px; line-height: 1; }
-  .brand b { font-family: var(--serif); font-weight: 400; font-size: 30px; letter-spacing: .04em; }
-  .brand span { font-family: var(--mono); font-size: 10px; letter-spacing: .28em; color: var(--copper-soft); }
-  .hright { display: flex; align-items: center; gap: 28px; }
-  .hphone { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; color: var(--text-2); }
-  .btn-line { font-family: var(--mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; border: 1px solid rgba(236,232,225,.45); padding: 12px 20px; transition: all .3s; }
-  .btn-line:hover { background: var(--text); color: var(--bg); }
-  .burger { background: none; border: 0; cursor: pointer; width: 30px; height: 18px; position: relative; }
-  .burger span { position: absolute; left: 0; right: 0; height: 1px; background: var(--text); }
-  .burger span:nth-child(1) { top: 0; } .burger span:nth-child(2) { top: 8.5px; width: 70%; left: auto; } .burger span:nth-child(3) { bottom: 0; }
+  header .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 96px; }
+  .menu-btn { justify-self: start; display: flex; align-items: center; gap: 12px; background: none; border: 0; color: var(--text); cursor: pointer; }
+  .menu-btn i { display: grid; gap: 5px; width: 22px; }
+  .menu-btn i::before, .menu-btn i::after { content: ""; height: 1.5px; background: currentColor; }
+  .brand { text-align: center; line-height: 1; }
+  .brand b { display: block; font-family: var(--cond); font-weight: 700; font-size: 30px; letter-spacing: .08em; }
+  .brand span { font-family: var(--mono); font-size: 9px; letter-spacing: .32em; color: var(--rust-soft); }
+  .hcta { justify-self: end; font-family: var(--mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; border: 1px solid rgba(236,234,230,.5); padding: 12px 20px; transition: all .3s; }
+  .hcta:hover { background: var(--rust); border-color: var(--rust); }
 
   /* Menu */
-  .menu { position: fixed; inset: 0; z-index: 50; background: rgba(17,18,20,.98); display: grid; grid-template-columns: 1fr 1fr; opacity: 0; visibility: hidden; transition: opacity .5s, visibility .5s; }
+  .menu { position: fixed; inset: 0; z-index: 50; background: var(--bg); display: flex; flex-direction: column; justify-content: center; padding: 0 6vw; opacity: 0; visibility: hidden; transition: opacity .45s, visibility .45s; }
   .menu.open { opacity: 1; visibility: visible; }
-  .menu-nav { display: flex; flex-direction: column; justify-content: center; padding-left: 12vw; gap: 4px; }
-  .menu-nav a { display: flex; align-items: baseline; gap: 22px; font-family: var(--serif); font-size: clamp(40px, 5vw, 72px); line-height: 1.15; opacity: 0; transform: translateY(14px); transition: opacity .6s, transform .6s, color .3s; }
-  .menu-nav a small { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; color: var(--copper); }
-  .menu-nav a:hover { color: var(--copper-soft); }
-  .menu.open .menu-nav a { opacity: 1; transform: none; }
-  .menu.open .menu-nav a:nth-child(2) { transition-delay: .06s; } .menu.open .menu-nav a:nth-child(3) { transition-delay: .12s; } .menu.open .menu-nav a:nth-child(4) { transition-delay: .18s; }
-  .menu-side { border-left: 1px solid var(--line); display: flex; flex-direction: column; justify-content: flex-end; padding: 0 6vw 10vh; gap: 10px; color: var(--text-2); }
-  .menu-close { position: absolute; top: 34px; right: 40px; width: 30px; height: 30px; background: none; border: 0; cursor: pointer; }
-  .menu-close::before, .menu-close::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: var(--text); transform: rotate(45deg); }
-  .menu-close::after { transform: rotate(-45deg); }
+  .menu a.cond { display: flex; align-items: baseline; gap: 24px; font-size: clamp(54px, 9vw, 132px); border-bottom: 1px solid var(--line); padding: 6px 0 2px; transform: translateY(18px); opacity: 0; transition: transform .6s, opacity .6s, color .25s; }
+  .menu a.cond small { font-family: var(--mono); font-weight: 400; font-size: 12px; color: var(--rust); }
+  .menu a.cond:hover { color: var(--rust-soft); }
+  .menu.open a.cond { transform: none; opacity: 1; }
+  .menu.open a.cond:nth-of-type(2) { transition-delay: .05s; } .menu.open a.cond:nth-of-type(3) { transition-delay: .1s; } .menu.open a.cond:nth-of-type(4) { transition-delay: .15s; } .menu.open a.cond:nth-of-type(5) { transition-delay: .2s; }
+  .menu-close { position: absolute; top: 32px; left: 40px; background: none; border: 0; color: var(--text); cursor: pointer; }
 
   /* Hero */
-  .hero { position: relative; height: 100vh; height: 100svh; min-height: 560px; overflow: hidden; }
-  .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.08); animation: zoom 22s ease-out forwards; }
+  .hero { position: relative; height: 100vh; height: 100svh; min-height: 600px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow: hidden; }
+  .hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.1); animation: zoom 24s ease-out forwards; }
   @keyframes zoom { to { transform: scale(1); } }
-  .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(17,18,20,.55) 0%, rgba(17,18,20,.1) 30%, rgba(17,18,20,.25) 60%, rgba(17,18,20,.85) 100%); }
-  .frame { position: absolute; inset: 120px 40px 40px; z-index: 1; pointer-events: none; }
-  .frame i { position: absolute; width: 18px; height: 18px; border-color: rgba(236,232,225,.55); border-style: solid; border-width: 0; }
-  .frame i:nth-child(1) { top: 0; left: 0; border-top-width: 1px; border-left-width: 1px; }
-  .frame i:nth-child(2) { top: 0; right: 0; border-top-width: 1px; border-right-width: 1px; }
-  .frame i:nth-child(3) { bottom: 0; left: 0; border-bottom-width: 1px; border-left-width: 1px; }
-  .frame i:nth-child(4) { bottom: 0; right: 0; border-bottom-width: 1px; border-right-width: 1px; }
-  .hero-in { position: absolute; z-index: 2; left: 40px; right: 40px; bottom: 80px; display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 40px; }
-  .hero h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(48px, 7.2vw, 112px); line-height: .98; letter-spacing: -.01em; max-width: 12ch; opacity: 0; animation: up 1.4s .3s ease forwards; }
-  .hero h1 em { color: var(--copper-soft); }
-  .hero-meta { text-align: right; color: var(--text-2); display: grid; gap: 8px; opacity: 0; animation: up 1.4s .7s ease forwards; }
-  @keyframes up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  .hero::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(13,14,15,.35) 0%, rgba(13,14,15,.75) 100%); }
+  .hero-in { position: relative; z-index: 1; padding: 0 20px; }
+  .hero h1 { font-size: clamp(64px, 11vw, 176px); opacity: 0; animation: up 1.3s .2s ease forwards; }
+  .hero h1 span { display: block; color: var(--rust-soft); }
+  .hero p { margin-top: 26px; color: var(--text-2); opacity: 0; animation: up 1.3s .6s ease forwards; }
+  @keyframes up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  .hero-bar { position: absolute; z-index: 1; left: 0; right: 0; bottom: 0; border-top: 1px solid var(--line); }
+  .hero-bar .wrap { display: flex; justify-content: space-between; align-items: center; height: 64px; }
+  .hero-bar nav { display: flex; gap: 32px; }
+  .hero-bar a:hover { color: var(--rust-soft); }
 
-  /* Sheet label (A-01 ...) */
-  .sheet { display: flex; align-items: center; gap: 16px; color: var(--muted); }
-  .sheet b { color: var(--copper); font-weight: 500; }
-  .sheet::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--line-copper), transparent); }
-  section { position: relative; }
+  /* Ticker */
+  .ticker { background: var(--rust); color: var(--ink); overflow: hidden; white-space: nowrap; }
+  .ticker div { display: inline-flex; gap: 40px; padding: 14px 0; animation: tick 38s linear infinite; }
+  .ticker span { font-family: var(--cond); font-weight: 600; font-size: 22px; letter-spacing: .06em; text-transform: uppercase; }
+  .ticker span::after { content: "■"; font-size: 9px; margin-left: 40px; vertical-align: middle; }
+  @keyframes tick { to { transform: translateX(-50%); } }
 
-  /* Story */
-  .story { min-height: 100vh; display: flex; align-items: center; padding: 140px 0; overflow: hidden; }
-  .story > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .story::after { content: ""; position: absolute; inset: 0; background: rgba(17,18,20,.72); }
-  .story .wrap { position: relative; z-index: 1; width: 100%; }
-  .story-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 80px; margin-top: 72px; align-items: start; }
-  .story h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(40px, 4.6vw, 68px); line-height: 1.02; }
-  .story h2 em { color: var(--copper-soft); }
-  .story p { font-size: 18px; color: var(--text-2); max-width: 52ch; }
-  .story p + p { margin-top: 18px; }
-  .facts { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 56px; border-top: 1px solid var(--line); }
-  .facts > div { padding: 22px 20px 0 0; }
-  .facts > div + div { padding-left: 20px; border-left: 1px solid var(--line); }
+  /* Story (typographic) */
+  .story { padding: 150px 0 140px; }
+  .story-grid { display: grid; grid-template-columns: 7fr 5fr; gap: 72px; align-items: end; }
+  .story h2 { font-size: clamp(72px, 10vw, 156px); }
+  .story h2 em { font-style: normal; color: var(--rust-soft); }
+  .story p { font-size: 18px; color: var(--text-2); }
+  .story p + p { margin-top: 16px; }
+  .story .lbl { margin-bottom: 40px; color: var(--muted); display: flex; gap: 14px; align-items: center; }
+  .story .lbl b { color: var(--rust); font-weight: 500; }
+  .facts { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 90px; border-top: 1px solid var(--line); }
+  .facts > div { padding: 24px 24px 0 0; }
+  .facts > div + div { padding-left: 24px; border-left: 1px solid var(--line); }
   .facts .k { color: var(--muted); }
-  .facts .v { font-family: var(--serif); font-size: 30px; margin-top: 6px; }
+  .facts .v { font-family: var(--cond); font-weight: 600; font-size: 34px; text-transform: uppercase; margin-top: 4px; }
 
-  /* Services */
-  .services { background: var(--bg-2); padding-top: 120px; border-top: 1px solid var(--line); }
-  .s-head { display: flex; justify-content: space-between; align-items: end; gap: 32px; margin: 40px 0 72px; flex-wrap: wrap; }
-  .s-head h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(40px, 4.6vw, 68px); line-height: 1; }
-  .s-head h2 em { color: var(--copper-soft); }
-  .row { display: grid; grid-template-columns: 1fr 1fr; min-height: 72vh; border-top: 1px solid var(--line); }
-  .row .media { position: relative; overflow: hidden; }
-  .row .media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.6s cubic-bezier(.2,.7,.2,1); }
-  .row:hover .media img { transform: scale(1.03); }
-  .row .media .mono { position: absolute; left: 20px; bottom: 18px; z-index: 1; color: rgba(236,232,225,.8); }
-  .row.rev .media { order: 2; }
-  .row .txt { padding: 88px clamp(32px, 6vw, 110px); display: flex; flex-direction: column; justify-content: center; }
-  .row:nth-of-type(even) .txt { background: var(--bg-3); }
-  .row .n { color: var(--copper); }
-  .row h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(34px, 3.4vw, 50px); line-height: 1.05; margin: 16px 0 18px; }
-  .row p { color: var(--text-2); max-width: 44ch; }
+  /* Chapters (Elliman: stacked full-screen) */
+  .chapters { position: relative; }
+  .chap { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; }
+  .chap img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .chap::after { content: ""; position: absolute; inset: 0; background: rgba(13,14,15,.58); }
+  .chap-in { position: relative; z-index: 1; }
+  .chap .num { color: var(--rust-soft); margin-bottom: 18px; }
+  .chap h2 { font-size: clamp(110px, 20vw, 320px); }
+  .chap p { margin-top: 18px; color: var(--text-2); max-width: 40ch; margin-left: auto; margin-right: auto; }
+  .chap .bar { position: absolute; z-index: 1; left: 40px; right: 40px; bottom: 34px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .chap .bar span { height: 2px; background: rgba(236,234,230,.22); }
+  .chap .bar span.on { background: var(--rust); }
+  .chap-top { position: absolute; z-index: 1; top: 34px; left: 40px; right: 40px; display: flex; justify-content: space-between; color: rgba(236,234,230,.7); }
 
-  /* Sites slider */
-  .sites { padding: 120px 0 110px; background: var(--bg); border-top: 1px solid var(--line); }
-  .sites .s-head { margin-bottom: 48px; }
-  .track { display: flex; gap: 32px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 0 7.5vw; scrollbar-width: none; }
-  .track::-webkit-scrollbar { display: none; }
-  .site { position: relative; flex: 0 0 85vw; max-width: 1200px; aspect-ratio: 16/8.6; overflow: hidden; scroll-snap-align: center; }
-  .site img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .site::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(17,18,20,.35) 0%, rgba(17,18,20,0) 30%, rgba(17,18,20,0) 50%, rgba(17,18,20,.85) 100%); }
-  .site .top { position: absolute; z-index: 1; top: 24px; left: 32px; right: 32px; display: flex; justify-content: space-between; color: rgba(236,232,225,.85); }
-  .site .cap { position: absolute; z-index: 1; left: 32px; right: 32px; bottom: 30px; display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 24px; }
-  .site h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 3.4vw, 52px); line-height: 1; }
-  .stage { display: grid; gap: 10px; min-width: 260px; }
-  .bars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
-  .bars span { height: 2px; background: rgba(236,232,225,.22); }
-  .bars span.on { background: var(--copper); }
-  .gctrl { max-width: 85vw; margin: 28px auto 0; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-  .arrows { display: flex; align-items: center; gap: 24px; }
-  .arrows button { background: none; border: 1px solid var(--line); cursor: pointer; width: 46px; height: 46px; position: relative; transition: border-color .3s; }
-  .arrows button:hover:not(:disabled) { border-color: var(--copper); }
-  .arrows button::before { content: ""; position: absolute; top: 50%; left: 50%; width: 10px; height: 10px; border-left: 1px solid var(--text); border-bottom: 1px solid var(--text); transform: translate(-30%, -50%) rotate(45deg); }
-  .arrows button.next::before { transform: translate(-70%, -50%) rotate(-135deg); }
-  .arrows button:disabled { opacity: .3; cursor: default; }
-  .count { color: var(--muted); white-space: nowrap; }
+  /* Process (Function: light section, cards) */
+  .process { background: var(--paper); color: var(--ink); padding: 130px 0; position: relative; z-index: 2; }
+  .p-head { display: flex; justify-content: space-between; align-items: end; gap: 30px; flex-wrap: wrap; margin-bottom: 64px; }
+  .p-head h2 { font-size: clamp(56px, 7vw, 110px); }
+  .p-head h2 em { font-style: normal; color: var(--rust); }
+  .process .tag { color: var(--rust); border-color: rgba(210,87,44,.55); }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .card { background: var(--paper-2); padding: 34px 30px 30px; display: flex; flex-direction: column; min-height: 440px; }
+  .card .n { font-family: var(--mono); font-size: 12px; color: var(--rust); }
+  .card h3 { font-family: var(--cond); font-weight: 700; font-size: 44px; text-transform: uppercase; line-height: 1; margin: 12px 0 10px; }
+  .card p { font-size: 15px; color: #4a4843; }
+  .viz { margin-top: auto; padding-top: 28px; }
+  .gantt { display: grid; gap: 8px; }
+  .gantt div { display: grid; grid-template-columns: 70px 1fr; align-items: center; gap: 10px; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; color: #6a675f; text-transform: uppercase; }
+  .gantt i { display: block; height: 10px; background: var(--ink); border-radius: 2px; }
+  .gantt i.r { background: var(--rust); }
+  .checks { display: grid; gap: 8px; }
+  .checks div { display: flex; justify-content: space-between; align-items: center; background: var(--paper); padding: 10px 12px; font-size: 13px; }
+  .checks b { font-family: var(--mono); font-weight: 500; font-size: 10px; letter-spacing: .1em; color: var(--rust); }
+  .key { background: var(--ink); color: var(--paper); padding: 18px; display: flex; justify-content: space-between; align-items: end; }
+  .key .cond { font-size: 40px; }
+
+  /* Lists (Snøhetta: hover preview) */
+  .list-sec { padding: 130px 0 120px; border-top: 1px solid var(--line); background: var(--bg-2); position: relative; z-index: 2; }
+  .list-sec.alt { background: var(--bg); }
+  .l-head { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 40px; flex-wrap: wrap; }
+  .l-head h2 { font-size: clamp(56px, 7vw, 110px); }
+  .l-head h2 em { font-style: normal; color: var(--rust-soft); }
+  .rows { border-top: 1px solid var(--line); }
+  .r { display: grid; grid-template-columns: 90px 1fr auto; align-items: center; gap: 24px; padding: 22px 0; border-bottom: 1px solid var(--line); cursor: default; transition: padding .35s, color .25s; }
+  .r .idx { color: var(--muted); }
+  .r .t { font-family: var(--cond); font-weight: 600; font-size: clamp(36px, 4.4vw, 64px); text-transform: uppercase; line-height: 1; }
+  .r .d { color: var(--text-2); text-align: right; max-width: 34ch; font-size: 14px; }
+  .r .thumb { display: none; }
+  .r:hover { padding-left: 16px; color: var(--rust-soft); }
+  .peek { position: fixed; z-index: 30; width: 360px; aspect-ratio: 4/3; pointer-events: none; overflow: hidden; opacity: 0; transform: translate(-50%, -50%) scale(.92); transition: opacity .25s, transform .25s; }
+  .peek.on { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  .peek img { width: 100%; height: 100%; object-fit: cover; }
+  .peek span { position: absolute; left: 10px; bottom: 8px; color: #fff; }
 
   /* Contact */
-  .contact { background: var(--bg-2); padding: 130px 0 120px; border-top: 1px solid var(--line); }
-  .c-grid { display: grid; grid-template-columns: 6fr 5fr; gap: 90px; margin-top: 56px; }
-  .contact h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(48px, 6vw, 92px); line-height: .98; }
-  .contact h2 em { color: var(--copper-soft); }
-  .c-info { margin-top: 48px; display: grid; gap: 26px; }
+  .contact { padding: 140px 0 120px; border-top: 1px solid var(--line); position: relative; z-index: 2; background: var(--bg); }
+  .c-grid { display: grid; grid-template-columns: 7fr 5fr; gap: 80px; align-items: start; }
+  .contact h2 { font-size: clamp(72px, 10vw, 160px); }
+  .contact h2 em { font-style: normal; color: var(--rust-soft); display: block; }
+  .c-info { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; }
   .c-info .k { color: var(--muted); margin-bottom: 6px; }
-  .c-info .v { font-family: var(--serif); font-size: 30px; line-height: 1.2; }
-  .c-info .v small { display: block; font-family: var(--sans); font-size: 15px; color: var(--text-2); margin-top: 4px; }
-  form { display: grid; gap: 26px; align-content: start; padding: 40px; border: 1px solid var(--line); background: var(--bg-3); position: relative; }
-  form::before { content: "FORM · F-01"; position: absolute; top: -9px; left: 24px; background: var(--bg-2); padding: 0 10px; font-family: var(--mono); font-size: 10px; letter-spacing: .16em; color: var(--copper); }
-  label { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
-  input, select, textarea { width: 100%; background: transparent; border: 0; border-bottom: 1px solid rgba(236,232,225,.25); color: var(--text); font: inherit; font-size: 16px; padding: 6px 0 12px; outline: none; border-radius: 0; -webkit-appearance: none; appearance: none; resize: none; }
+  .c-info .v { font-family: var(--cond); font-weight: 600; font-size: 30px; text-transform: uppercase; line-height: 1.1; }
+  .c-info small { display: block; color: var(--text-2); font-size: 14px; margin-top: 4px; }
+  form { display: grid; gap: 24px; background: var(--bg-3); padding: 36px; border-top: 3px solid var(--rust); }
+  label { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  input, select, textarea { width: 100%; background: transparent; border: 0; border-bottom: 1px solid rgba(236,234,230,.25); color: var(--text); font: inherit; font-size: 16px; padding: 6px 0 12px; outline: none; border-radius: 0; -webkit-appearance: none; appearance: none; resize: none; }
   select option { color: #111; }
-  input:focus, select:focus, textarea:focus { border-color: var(--copper); }
-  .btn { display: inline-flex; justify-content: center; align-items: center; padding: 18px 30px; background: var(--copper); color: #111; font-family: var(--mono); font-size: 12px; letter-spacing: .18em; text-transform: uppercase; border: 0; cursor: pointer; transition: background .3s; }
-  .btn:hover { background: var(--copper-soft); }
+  input:focus, select:focus, textarea:focus { border-color: var(--rust); }
+  .btn { padding: 18px 26px; background: var(--rust); color: var(--ink); border: 0; cursor: pointer; font-family: var(--cond); font-weight: 700; font-size: 22px; letter-spacing: .06em; text-transform: uppercase; transition: background .3s; }
+  .btn:hover { background: var(--rust-soft); }
 
-  footer { border-top: 1px solid var(--line); padding: 28px 0 110px; color: var(--muted); }
+  footer { border-top: 1px solid var(--line); padding: 26px 0 110px; color: var(--muted); position: relative; z-index: 2; background: var(--bg); }
   footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
 
+  /* Section dots (MVRDV) */
+  .dots { position: fixed; right: 22px; top: 50%; transform: translateY(-50%); z-index: 20; display: grid; gap: 12px; mix-blend-mode: difference; }
+  .dots a { width: 8px; height: 8px; border: 1px solid #fff; transition: background .3s; }
+  .dots a.on { background: #fff; }
+
   .mbar { display: none; }
-  .rv { opacity: 0; transform: translateY(22px); transition: opacity 1s ease, transform 1s ease; }
+  .rv { opacity: 0; transform: translateY(22px); transition: opacity 1s, transform 1s; }
   .rv.in { opacity: 1; transform: none; }
 
   @media (max-width: 900px) {
     .wrap { padding: 0 20px; }
-    header .wrap { height: 80px; }
+    header .wrap { height: 78px; }
+    .menu-btn span { display: none; }
     .brand b { font-size: 24px; }
-    .hphone { display: none; }
-    .hright { gap: 18px; }
-    .btn-line { padding: 10px 12px; font-size: 10px; }
-    .frame { inset: 92px 20px 20px; }
-    .hero-in { left: 20px; right: 20px; bottom: 110px; grid-template-columns: 1fr; gap: 24px; }
-    .hero-meta { text-align: left; }
-    .story { padding: 110px 0; }
-    .story-grid, .c-grid { grid-template-columns: 1fr; gap: 40px; }
-    .facts { grid-template-columns: 1fr; }
+    .hcta { padding: 10px 12px; font-size: 10px; }
+    .hero-bar nav { display: none; }
+    .hero-bar .wrap { height: 54px; }
+    .hero { min-height: 0; }
+    .story { padding: 100px 0; }
+    .story-grid, .c-grid { grid-template-columns: 1fr; gap: 36px; }
+    .facts { grid-template-columns: 1fr; margin-top: 56px; }
     .facts > div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); margin-top: 18px; }
-    .row { grid-template-columns: 1fr; min-height: 0; }
-    .row .media { aspect-ratio: 4/3; }
-    .row.rev .media { order: 0; }
-    .row .txt { padding: 40px 20px 56px; }
-    .track { gap: 14px; padding: 0 20px; }
-    .site { flex-basis: calc(100vw - 56px); aspect-ratio: 4/5; }
-    .site .top { left: 18px; right: 18px; top: 18px; }
-    .site .cap { left: 18px; right: 18px; bottom: 22px; grid-template-columns: 1fr; }
-    .stage { min-width: 0; }
-    .gctrl { max-width: none; padding: 0 20px; }
+    .chap .bar { left: 20px; right: 20px; bottom: 90px; }
+    .chap-top { left: 20px; right: 20px; top: 92px; }
+    .chap p { padding: 0 24px; }
+    .process, .list-sec, .contact { padding: 96px 0; }
+    .cards { grid-template-columns: 1fr; }
+    .card { min-height: 0; }
+    .r { grid-template-columns: 1fr 96px; gap: 6px 16px; }
+    .r .idx { grid-column: 1 / -1; }
+    .r .d { text-align: left; grid-column: 1; }
+    .r .thumb { display: block; grid-column: 2; grid-row: 2 / span 2; width: 96px; aspect-ratio: 1; object-fit: cover; }
+    .r:hover { padding-left: 0; }
+    .peek { display: none; }
+    .c-info { grid-template-columns: 1fr; }
     form { padding: 28px 22px; }
-    .menu { grid-template-columns: 1fr; }
-    .menu-nav { padding-left: 28px; }
-    .menu-side { border-left: 0; padding: 0 28px 120px; }
-    .menu-close { top: 26px; right: 20px; }
-    .mbar { display: grid; grid-template-columns: 1fr 1fr; position: fixed; inset: auto 0 0 0; z-index: 20; }
-    .mbar a { padding: 18px; text-align: center; font-family: var(--mono); font-size: 12px; letter-spacing: .18em; text-transform: uppercase; }
+    .dots { display: none; }
+    .menu-close { left: 20px; top: 26px; }
+    .mbar { display: grid; grid-template-columns: 1fr 1fr; position: fixed; inset: auto 0 0 0; z-index: 40; }
+    .mbar a { padding: 16px; text-align: center; font-family: var(--cond); font-weight: 700; font-size: 20px; letter-spacing: .08em; text-transform: uppercase; }
     .mbar a:first-child { background: var(--bg-3); border-top: 1px solid var(--line); }
-    .mbar a:last-child { background: var(--copper); color: #111; }
+    .mbar a:last-child { background: var(--rust); color: var(--ink); }
   }
   @media (prefers-reduced-motion: reduce) {
-    .hero img, .hero h1, .hero-meta { animation: none; opacity: 1; transform: none; }
+    .hero > img, .hero h1, .hero p { animation: none; opacity: 1; transform: none; }
+    .ticker div { animation: none; }
     .rv { opacity: 1; transform: none; transition: none; }
   }
 </style>
@@ -211,171 +223,205 @@
 
 <header>
   <div class="wrap">
+    <button class="menu-btn mono" aria-label="Menüyü aç" aria-expanded="false"><i></i><span>Menü</span></button>
     <a href="#" class="brand"><b>Ozan İskender</b><span>İNŞAAT MÜHENDİSİ</span></a>
-    <div class="hright">
-      <a href="#iletisim" class="hphone">05XX XXX XX XX</a>
-      <a href="#iletisim" class="btn-line">İletişim</a>
-      <button class="burger" aria-label="Menüyü aç" aria-expanded="false"><span></span><span></span><span></span></button>
-    </div>
+    <a href="#iletisim" class="hcta">İletişim</a>
   </div>
 </header>
 
 <div class="menu" id="menu" aria-hidden="true">
-  <button class="menu-close" aria-label="Menüyü kapat"></button>
-  <nav class="menu-nav">
-    <a href="#hikaye"><small>A-01</small>Hikâye</a>
-    <a href="#hizmetler"><small>A-02</small>Hizmetler</a>
-    <a href="#santiyeler"><small>A-03</small>Şantiyeler</a>
-    <a href="#iletisim"><small>A-04</small>İletişim</a>
-  </nav>
-  <div class="menu-side">
-    <span class="mono" style="color:var(--copper)">Ofis</span>
-    <p>Beşevler, Nilüfer / Bursa</p>
-    <p class="mono">40.21° K · 28.97° D</p>
-  </div>
+  <button class="menu-close mono">✕ Kapat</button>
+  <a class="cond" href="#hikaye"><small>01</small>Hikâye</a>
+  <a class="cond" href="#asamalar"><small>02</small>Aşamalar</a>
+  <a class="cond" href="#hizmetler"><small>03</small>Hizmetler</a>
+  <a class="cond" href="#santiyeler"><small>04</small>Şantiyeler</a>
+  <a class="cond" href="#iletisim"><small>05</small>İletişim</a>
 </div>
 
-<div class="hero">
+<nav class="dots" aria-hidden="true">
+  <a href="#top" class="on"></a><a href="#hikaye"></a><a href="#asamalar"></a><a href="#surec"></a><a href="#hizmetler"></a><a href="#santiyeler"></a><a href="#iletisim"></a>
+</nav>
+
+<div class="hero" id="top">
   <img src="img/hero.jpg" alt="">
-  <div class="frame"><i></i><i></i><i></i><i></i></div>
   <div class="hero-in">
-    <h1>Sağlam yapı, <em>sahada</em> başlar.</h1>
-    <div class="hero-meta">
-      <span class="mono">Bursa · Nilüfer</span>
-      <span class="mono">40.21° K · 28.97° D</span>
-      <span class="mono" style="color:var(--copper-soft)">3 aktif şantiye</span>
+    <h1 class="cond">Sağlam yapı<span>sahada başlar</span></h1>
+    <p class="mono">Bursa · Nilüfer — 3 aktif şantiye</p>
+  </div>
+  <div class="hero-bar">
+    <div class="wrap mono">
+      <nav><a href="#hikaye">Hikâye</a><a href="#asamalar">Aşamalar</a><a href="#hizmetler">Hizmetler</a><a href="#santiyeler">Şantiyeler</a></nav>
+      <span>40.21° K · 28.97° D</span>
     </div>
   </div>
 </div>
 
+<div class="ticker" aria-hidden="true"><div>
+  <span>Statik proje</span><span>Şantiye şefliği</span><span>Fenni mesuliyet</span><span>Uygulama</span><span>Koordinasyon</span><span>Bursa</span>
+  <span>Statik proje</span><span>Şantiye şefliği</span><span>Fenni mesuliyet</span><span>Uygulama</span><span>Koordinasyon</span><span>Bursa</span>
+</div></div>
+
 <section class="story" id="hikaye">
-  <img src="img/hikaye.jpg" alt="" loading="lazy">
   <div class="wrap">
-    <div class="sheet mono rv"><b>A-01</b> Hikâye</div>
+    <div class="lbl mono rv"><b>01</b> Hikâye</div>
     <div class="story-grid">
-      <h2 class="rv">Şantiyede <em>büyüdü,</em><br>şantiyede kalmayı seçti.</h2>
+      <h2 class="cond rv">Şantiyede <em>büyüdü.</em></h2>
       <div class="rv">
         <p>Ozan İskender çocukluğunu babasının şantiyelerinde geçirdi. Betonun nasıl döküldüğünü, bir yapının nasıl yükseldiğini kitaplardan önce sahada gördü.</p>
         <p>Bugün inşaat mühendisi olarak sıfırdan kurduğu firmasıyla müteahhitlerin yanında, işin başında.</p>
-        <div class="facts">
-          <div><div class="k mono">Meslek</div><div class="v">İnşaat Mühendisi</div></div>
-          <div><div class="k mono">Şehir</div><div class="v">Bursa</div></div>
-          <div><div class="k mono">Bugün</div><div class="v">3 aktif şantiye</div></div>
+      </div>
+    </div>
+    <div class="facts rv">
+      <div><div class="k mono">Meslek</div><div class="v">İnşaat mühendisi</div></div>
+      <div><div class="k mono">Şehir</div><div class="v">Bursa</div></div>
+      <div><div class="k mono">Bugün</div><div class="v">3 aktif şantiye</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="chapters" id="asamalar">
+  <section class="chap">
+    <img src="img/s-2.jpg" alt="" loading="lazy">
+    <div class="chap-top mono"><span>02 · Aşamalar</span><span>01 / 04</span></div>
+    <div class="chap-in"><div class="num mono">Aşama 01</div><h2 class="cond">Temel</h2><p>Zemin, kazı ve temel. Yapının görünmeyen ama her şeyi taşıyan kısmı.</p></div>
+    <div class="bar"><span class="on"></span><span></span><span></span><span></span></div>
+  </section>
+  <section class="chap">
+    <img src="img/h-uygulama.jpg" alt="" loading="lazy">
+    <div class="chap-top mono"><span>02 · Aşamalar</span><span>02 / 04</span></div>
+    <div class="chap-in"><div class="num mono">Aşama 02</div><h2 class="cond">Kaba</h2><p>Kolon, kiriş, döşeme. Demir ve beton kat kat yükselir.</p></div>
+    <div class="bar"><span class="on"></span><span class="on"></span><span></span><span></span></div>
+  </section>
+  <section class="chap">
+    <img src="img/c-ince.jpg" alt="" loading="lazy">
+    <div class="chap-top mono"><span>02 · Aşamalar</span><span>03 / 04</span></div>
+    <div class="chap-in"><div class="num mono">Aşama 03</div><h2 class="cond">İnce</h2><p>Duvar, tesisat, yalıtım ve son kat işleri.</p></div>
+    <div class="bar"><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div>
+  </section>
+  <section class="chap">
+    <img src="img/c-teslim.jpg" alt="" loading="lazy">
+    <div class="chap-top mono"><span>02 · Aşamalar</span><span>04 / 04</span></div>
+    <div class="chap-in"><div class="num mono">Aşama 04</div><h2 class="cond">Teslim</h2><p>Projesine uygun, eksiksiz bir yapı.</p></div>
+    <div class="bar"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></div>
+  </section>
+</div>
+
+<section class="process" id="surec">
+  <div class="wrap">
+    <div class="p-head rv">
+      <h2 class="cond">Nasıl <em>çalışıyoruz</em></h2>
+      <span class="tag">Taslak · süreç Ozan'la doğrulanacak</span>
+    </div>
+    <div class="cards">
+      <div class="card rv">
+        <span class="n">01</span><h3>Proje</h3><p>İhtiyaç, bütçe ve takvim netleşir; proje hazırlanır.</p>
+        <div class="viz gantt">
+          <div>Proje<i style="width:42%" class="r"></i></div>
+          <div>Ruhsat<i style="width:30%;margin-left:30%"></i></div>
+          <div>Temel<i style="width:34%;margin-left:52%"></i></div>
+          <div>Kaba<i style="width:44%;margin-left:56%"></i></div>
         </div>
+      </div>
+      <div class="card rv">
+        <span class="n">02</span><h3>Saha</h3><p>İş, sahada projeye uygun ve adım adım kontrol edilerek ilerler.</p>
+        <div class="viz checks">
+          <div>Donatı kontrolü <b>Tamam</b></div>
+          <div>Beton dökümü <b>Tamam</b></div>
+          <div>Kalıp sökümü <b>Sırada</b></div>
+        </div>
+      </div>
+      <div class="card rv">
+        <span class="n">03</span><h3>Teslim</h3><p>Yapı, projesine ve mevzuata uygun olarak tamamlanır.</p>
+        <div class="viz key"><span class="cond">Teslim</span><span class="mono">Aşama 04 / 04</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="services" id="hizmetler">
+<section class="list-sec" id="hizmetler">
   <div class="wrap">
-    <div class="sheet mono rv"><b>A-02</b> Hizmetler</div>
-    <div class="s-head rv">
-      <h2>Projeden <em>teslime</em><br>işin başında.</h2>
+    <div class="l-head rv">
+      <h2 class="cond">Hizmet<em>ler</em></h2>
       <span class="tag">Taslak · kapsam Ozan'la doğrulanacak</span>
     </div>
-  </div>
-  <div class="row">
-    <div class="media"><img src="img/h-statik.jpg" alt="" loading="lazy"><span class="mono">Detay · 01</span></div>
-    <div class="txt rv"><span class="n mono">01</span><h3>Statik proje</h3><p>Yapının taşıyıcı sistemi, hesapları ve uygulama projeleri.</p></div>
-  </div>
-  <div class="row rev">
-    <div class="media"><img src="img/h-saha.jpg" alt="" loading="lazy"><span class="mono">Detay · 02</span></div>
-    <div class="txt rv"><span class="n mono">02</span><h3>Şantiye şefliği</h3><p>Müteahhidin yanında, işin sahada projeye uygun ilerlemesi.</p></div>
-  </div>
-  <div class="row">
-    <div class="media"><img src="img/h-donati.jpg" alt="" loading="lazy"><span class="mono">Detay · 03</span></div>
-    <div class="txt rv"><span class="n mono">03</span><h3>Fenni mesuliyet</h3><p>Yapının mevzuata ve projesine uygunluğunun takibi.</p></div>
-  </div>
-  <div class="row rev">
-    <div class="media"><img src="img/h-uygulama.jpg" alt="" loading="lazy"><span class="mono">Detay · 04</span></div>
-    <div class="txt rv"><span class="n mono">04</span><h3>Uygulama ve koordinasyon</h3><p>Ekiplerin, malzemenin ve takvimin sahada bir arada yürümesi.</p></div>
+    <div class="rows">
+      <div class="r" data-img="img/h-statik.jpg"><span class="idx mono">03.1</span><span class="t">Statik proje</span><span class="d">Taşıyıcı sistem, hesaplar ve uygulama projeleri.</span><img class="thumb" src="img/h-statik.jpg" alt="" loading="lazy"></div>
+      <div class="r" data-img="img/h-saha.jpg"><span class="idx mono">03.2</span><span class="t">Şantiye şefliği</span><span class="d">Müteahhidin yanında, işin sahada projeye uygun ilerlemesi.</span><img class="thumb" src="img/h-saha.jpg" alt="" loading="lazy"></div>
+      <div class="r" data-img="img/h-donati.jpg"><span class="idx mono">03.3</span><span class="t">Fenni mesuliyet</span><span class="d">Yapının mevzuata ve projesine uygunluğunun takibi.</span><img class="thumb" src="img/h-donati.jpg" alt="" loading="lazy"></div>
+      <div class="r" data-img="img/h-uygulama.jpg"><span class="idx mono">03.4</span><span class="t">Uygulama</span><span class="d">Ekiplerin, malzemenin ve takvimin sahada birlikte yürümesi.</span><img class="thumb" src="img/h-uygulama.jpg" alt="" loading="lazy"></div>
+    </div>
   </div>
 </section>
 
-<section class="sites" id="santiyeler">
+<section class="list-sec alt" id="santiyeler">
   <div class="wrap">
-    <div class="sheet mono rv"><b>A-03</b> Şantiyeler</div>
-    <div class="s-head rv">
-      <h2>Şu an <em>sahada.</em></h2>
-      <span class="tag">Temsili görseller · gerçek şantiye fotoğrafları gelecek</span>
+    <div class="l-head rv">
+      <h2 class="cond">Şu an <em>sahada</em></h2>
+      <span class="tag">Temsili görseller · gerçek bilgiler gelecek</span>
     </div>
-  </div>
-  <div class="track" id="track">
-    <div class="site">
-      <img src="img/s-1.jpg" alt="" loading="lazy">
-      <div class="top mono"><span>Şantiye 01</span><span>Konum · tür</span></div>
-      <div class="cap"><h3>Şantiye adı</h3><div class="stage"><span class="mono">Aşama · Kaba inşaat</span><div class="bars"><span class="on"></span><span class="on"></span><span></span><span></span></div></div></div>
+    <div class="rows">
+      <div class="r" data-img="img/s-1.jpg"><span class="idx mono">Ş-01</span><span class="t">Şantiye adı</span><span class="d mono">Konum · Kaba inşaat</span><img class="thumb" src="img/s-1.jpg" alt="" loading="lazy"></div>
+      <div class="r" data-img="img/s-2.jpg"><span class="idx mono">Ş-02</span><span class="t">Şantiye adı</span><span class="d mono">Konum · Temel</span><img class="thumb" src="img/s-2.jpg" alt="" loading="lazy"></div>
+      <div class="r" data-img="img/s-3.jpg"><span class="idx mono">Ş-03</span><span class="t">Şantiye adı</span><span class="d mono">Konum · Kaba inşaat</span><img class="thumb" src="img/s-3.jpg" alt="" loading="lazy"></div>
     </div>
-    <div class="site">
-      <img src="img/s-2.jpg" alt="" loading="lazy">
-      <div class="top mono"><span>Şantiye 02</span><span>Konum · tür</span></div>
-      <div class="cap"><h3>Şantiye adı</h3><div class="stage"><span class="mono">Aşama · Temel</span><div class="bars"><span class="on"></span><span></span><span></span><span></span></div></div></div>
-    </div>
-    <div class="site">
-      <img src="img/s-3.jpg" alt="" loading="lazy">
-      <div class="top mono"><span>Şantiye 03</span><span>Konum · tür</span></div>
-      <div class="cap"><h3>Şantiye adı</h3><div class="stage"><span class="mono">Aşama · Kaba inşaat</span><div class="bars"><span class="on"></span><span class="on"></span><span></span><span></span></div></div></div>
-    </div>
-  </div>
-  <div class="gctrl">
-    <div class="arrows"><button class="prev" aria-label="Önceki"></button><span class="count mono" id="count">01 / 03</span><button class="next" aria-label="Sonraki"></button></div>
-    <span class="mono" style="color:var(--muted)">Temel · Kaba · İnce · Teslim</span>
   </div>
 </section>
 
 <section class="contact" id="iletisim">
-  <div class="wrap">
-    <div class="sheet mono rv"><b>A-04</b> İletişim</div>
-    <div class="c-grid">
-      <div class="rv">
-        <h2>Bir projeniz <em>mi var?</em></h2>
-        <div class="c-info">
-          <div><div class="k mono">Telefon</div><a class="v" href="#">05XX XXX XX XX<small>Numara eklenecek</small></a></div>
-          <div><div class="k mono">Ofis</div><div class="v">Beşevler, Nilüfer<small>Eksper Emlak'ın yan dükkânı</small></div></div>
-        </div>
+  <div class="wrap c-grid">
+    <div class="rv">
+      <h2 class="cond">Bir projeniz <em>mi var?</em></h2>
+      <div class="c-info">
+        <div><div class="k mono">Telefon</div><a class="v" href="#">05XX XXX XX XX</a><small>Numara eklenecek</small></div>
+        <div><div class="k mono">Ofis</div><div class="v">Beşevler, Nilüfer</div><small>Eksper Emlak'ın yan dükkânı</small></div>
       </div>
-      <form class="rv" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Teşekkürler · sizi arayacağız';">
-        <div><label>Ad Soyad</label><input required></div>
-        <div><label>Telefon</label><input type="tel" required></div>
-        <div><label>Konu</label><select><option>Yeni proje</option><option>Devam eden şantiye</option><option>Diğer</option></select></div>
-        <div><label>Mesaj</label><textarea rows="3"></textarea></div>
-        <button class="btn" type="submit">Gönder</button>
-      </form>
     </div>
+    <form class="rv" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Teşekkürler · sizi arayacağız';">
+      <div><label>Ad Soyad</label><input required></div>
+      <div><label>Telefon</label><input type="tel" required></div>
+      <div><label>Konu</label><select><option>Yeni proje</option><option>Devam eden şantiye</option><option>Diğer</option></select></div>
+      <div><label>Mesaj</label><textarea rows="3"></textarea></div>
+      <button class="btn" type="submit">Gönder</button>
+    </form>
   </div>
 </section>
 
 <footer>
   <div class="wrap mono">
     <span>Ozan İskender · İnşaat Mühendisi · Bursa</span>
-    <span>Pafta 01 / 01 · Konsept taslak · Görseller Unsplash</span>
+    <span>Konsept taslak · Görseller Unsplash</span>
   </div>
 </footer>
 
+<div class="peek" id="peek"><img alt=""><span class="mono"></span></div>
 <div class="mbar"><a href="#iletisim">Ara</a><a href="#iletisim">WhatsApp</a></div>
 
 <script>
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
   document.querySelectorAll('.rv').forEach(el => io.observe(el));
 
-  const menu = document.getElementById('menu'), burger = document.querySelector('.burger');
-  const setMenu = open => { menu.classList.toggle('open', open); menu.setAttribute('aria-hidden', !open); burger.setAttribute('aria-expanded', open); document.body.style.overflow = open ? 'hidden' : ''; };
-  burger.addEventListener('click', () => setMenu(true));
+  const menu = document.getElementById('menu'), btn = document.querySelector('.menu-btn');
+  const setMenu = open => { menu.classList.toggle('open', open); menu.setAttribute('aria-hidden', !open); btn.setAttribute('aria-expanded', open); document.body.style.overflow = open ? 'hidden' : ''; };
+  btn.addEventListener('click', () => setMenu(true));
   menu.querySelector('.menu-close').addEventListener('click', () => setMenu(false));
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
   addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
 
-  const track = document.getElementById('track'), slides = [...track.children], count = document.getElementById('count');
-  const prev = document.querySelector('.arrows .prev'), next = document.querySelector('.arrows .next');
-  const center = el => el.offsetLeft + el.offsetWidth / 2 - track.scrollLeft - track.clientWidth / 2;
-  const cur = () => slides.reduce((b, el, i) => Math.abs(center(el)) < Math.abs(center(slides[b])) ? i : b, 0);
-  const go = i => { const el = slides[Math.max(0, Math.min(slides.length - 1, i))]; track.scrollTo({ left: el.offsetLeft - (track.clientWidth - el.offsetWidth) / 2 }); };
-  const sync = () => { const i = cur(); count.textContent = String(i + 1).padStart(2, '0') + ' / ' + String(slides.length).padStart(2, '0'); prev.disabled = i === 0; next.disabled = i === slides.length - 1; };
-  prev.addEventListener('click', () => go(cur() - 1));
-  next.addEventListener('click', () => go(cur() + 1));
-  track.addEventListener('scroll', () => requestAnimationFrame(sync));
-  sync();
+  // Snøhetta tarzı önizleme
+  const peek = document.getElementById('peek'), pImg = peek.querySelector('img'), pTxt = peek.querySelector('span');
+  document.querySelectorAll('.r[data-img]').forEach(r => {
+    r.addEventListener('mouseenter', () => { pImg.src = r.dataset.img; pTxt.textContent = r.querySelector('.idx').textContent; peek.classList.add('on'); });
+    r.addEventListener('mouseleave', () => peek.classList.remove('on'));
+    r.addEventListener('mousemove', e => { peek.style.left = e.clientX + 'px'; peek.style.top = e.clientY + 'px'; });
+  });
+
+  // Bölüm noktaları
+  const dots = [...document.querySelectorAll('.dots a')], secs = dots.map(d => document.querySelector(d.getAttribute('href')));
+  addEventListener('scroll', () => {
+    const y = scrollY + innerHeight / 2; let i = 0;
+    secs.forEach((s, k) => { if (s && s.getBoundingClientRect().top + scrollY <= y) i = k; });
+    dots.forEach((d, k) => d.classList.toggle('on', k === i));
+  }, { passive: true });
 </script>
 </body>
 </html>
