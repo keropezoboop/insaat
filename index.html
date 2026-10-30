@@ -7,7 +7,7 @@
 <title>Ozan İskender · İnşaat Mühendisi — Konsept</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Jost:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0d0e0f;
@@ -25,6 +25,7 @@
     --cond: "Barlow Condensed", "Arial Narrow", sans-serif;
     --mono: "IBM Plex Mono", ui-monospace, monospace;
     --sans: "Inter", system-ui, sans-serif;
+    --lite: "Jost", "Futura", system-ui, sans-serif;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -33,7 +34,9 @@
   a { color: inherit; text-decoration: none; }
   .wrap { max-width: 1320px; margin: 0 auto; padding: 0 40px; }
   .mono { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; }
-  .cond { font-family: var(--cond); font-weight: 700; text-transform: uppercase; line-height: .96; letter-spacing: .005em; }
+  .cond { font-family: var(--lite); font-weight: 300; text-transform: uppercase; line-height: 1.05; letter-spacing: .14em; }
+  .heavy { font-family: var(--cond); font-weight: 700; text-transform: uppercase; line-height: .96; letter-spacing: .005em; }
+  .pill { font-family: var(--lite); font-weight: 400; font-size: 13px; letter-spacing: .2em; text-transform: uppercase; border-radius: 999px; }
   .tag { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--rust-soft); border: 1px dashed rgba(210,87,44,.5); padding: 4px 8px; display: inline-block; }
 
   /* Header (Elliman: centered logo) */
@@ -43,15 +46,15 @@
   .menu-btn i { display: grid; gap: 5px; width: 22px; }
   .menu-btn i::before, .menu-btn i::after { content: ""; height: 1.5px; background: currentColor; }
   .brand { text-align: center; line-height: 1; }
-  .brand b { display: block; font-family: var(--cond); font-weight: 700; font-size: 30px; letter-spacing: .08em; }
+  .brand b { display: block; font-family: var(--lite); font-weight: 400; font-size: 24px; letter-spacing: .24em; text-transform: uppercase; margin-bottom: 8px; }
   .brand span { font-family: var(--mono); font-size: 9px; letter-spacing: .32em; color: var(--rust-soft); }
-  .hcta { justify-self: end; font-family: var(--mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; border: 1px solid rgba(236,234,230,.5); padding: 12px 20px; transition: all .3s; }
+  .hcta { justify-self: end; border: 1px solid rgba(236,234,230,.5); padding: 12px 24px; transition: all .3s; }
   .hcta:hover { background: var(--rust); border-color: var(--rust); }
 
   /* Menu */
   .menu { position: fixed; inset: 0; z-index: 50; background: var(--bg); display: flex; flex-direction: column; justify-content: center; padding: 0 6vw; opacity: 0; visibility: hidden; transition: opacity .45s, visibility .45s; }
   .menu.open { opacity: 1; visibility: visible; }
-  .menu a.cond { display: flex; align-items: baseline; gap: 24px; font-size: clamp(54px, 9vw, 132px); border-bottom: 1px solid var(--line); padding: 6px 0 2px; transform: translateY(18px); opacity: 0; transition: transform .6s, opacity .6s, color .25s; }
+  .menu a.cond { display: flex; align-items: baseline; gap: 24px; font-size: clamp(36px, 6vw, 84px); border-bottom: 1px solid var(--line); padding: 6px 0 2px; transform: translateY(18px); opacity: 0; transition: transform .6s, opacity .6s, color .25s; }
   .menu a.cond small { font-family: var(--mono); font-weight: 400; font-size: 12px; color: var(--rust); }
   .menu a.cond:hover { color: var(--rust-soft); }
   .menu.open a.cond { transform: none; opacity: 1; }
@@ -70,13 +73,13 @@
   @keyframes zoom { to { transform: scale(1); } }
   .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,14,15,.5) 0%, rgba(13,14,15,0) 25%, rgba(13,14,15,0) 55%, rgba(13,14,15,.75) 100%); }
   .hero-in { position: relative; z-index: 1; padding: 0 20px 124px; display: flex; flex-direction: column; align-items: center; gap: 22px; }
-  .hero-line { font-family: var(--cond); font-weight: 500; font-size: clamp(20px, 2.2vw, 30px); letter-spacing: .22em; text-transform: uppercase; line-height: 1.2; opacity: 0; animation: up 1.3s 1.9s ease forwards; }
-  .hero-cta { border: 1px solid rgba(236,234,230,.55); padding: 12px 26px; opacity: 0; animation: up 1.3s 2.2s ease forwards; transition: background .3s, border-color .3s; }
+  .hero-line { font-family: var(--lite); font-weight: 300; font-size: clamp(22px, 2.6vw, 38px); letter-spacing: .2em; text-transform: uppercase; line-height: 1.2; opacity: 0; animation: up 1.3s 1.9s ease forwards; }
+  .hero-cta { border: 1px solid rgba(236,234,230,.55); padding: 14px 32px; opacity: 0; animation: up 1.3s 2.2s ease forwards; transition: background .3s, border-color .3s; }
   .hero-cta:hover { background: var(--rust); border-color: var(--rust); }
 
   /* Intro (BIG/Zaha style) */
   .intro { position: fixed; inset: 0; z-index: 100; background: #000; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 18px; animation: lift 1s 1.3s cubic-bezier(.7,0,.2,1) forwards; }
-  .intro span { font-size: clamp(34px, 5vw, 64px); letter-spacing: .1em; opacity: 0; animation: up .9s .15s ease forwards; }
+  .intro span { font-size: clamp(26px, 3.6vw, 46px); letter-spacing: .26em; opacity: 0; animation: up .9s .15s ease forwards; }
   .intro i { width: 0; height: 2px; background: var(--rust); animation: grow 1s .3s ease forwards; }
   @keyframes grow { to { width: 120px; } }
   @keyframes lift { to { transform: translateY(-100%); visibility: hidden; } }
@@ -89,7 +92,7 @@
   .words span { grid-area: 1 / 1; font-size: clamp(80px, 14vw, 230px); opacity: 0; transform: translateY(40px); transition: opacity .6s ease, transform .6s ease; }
   .words span.on { opacity: 1; transform: none; }
   .words span.past { opacity: 0; transform: translateY(-40px); }
-  .seq-cta { position: absolute; z-index: 1; bottom: 110px; left: 50%; transform: translateX(-50%); border: 1px solid rgba(236,234,230,.55); padding: 12px 26px; white-space: nowrap; transition: background .3s, border-color .3s; }
+  .seq-cta { position: absolute; z-index: 1; bottom: 110px; left: 50%; transform: translateX(-50%); border: 1px solid rgba(236,234,230,.55); padding: 14px 32px; white-space: nowrap; transition: background .3s, border-color .3s; }
   .seq-cta:hover { background: var(--rust); border-color: var(--rust); }
   .seq-prog { position: absolute; z-index: 1; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; }
   .seq-prog i { width: 40px; height: 2px; background: rgba(236,234,230,.25); transition: background .4s; }
@@ -104,10 +107,10 @@
   .chapters { position: relative; }
   .chap { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; }
   .chap img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .chap::after { content: ""; position: absolute; inset: 0; background: rgba(13,14,15,.58); }
+  .chap::after { content: ""; position: absolute; inset: 0; background: rgba(13,14,15,.5); }
   .chap-in { position: relative; z-index: 1; }
   .chap .num { color: var(--rust-soft); margin-bottom: 18px; }
-  .chap h2 { font-size: clamp(110px, 20vw, 320px); }
+  .chap h2 { font-size: clamp(44px, 7vw, 108px); letter-spacing: .24em; margin-right: -.24em; }
   .chap p { margin-top: 18px; color: var(--text-2); max-width: 40ch; margin-left: auto; margin-right: auto; }
   .chap .bar { position: absolute; z-index: 1; left: 40px; right: 40px; bottom: 34px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
   .chap .bar span { height: 2px; background: rgba(236,234,230,.22); }
@@ -118,12 +121,14 @@
   .list-sec { padding: 130px 0 120px; border-top: 1px solid var(--line); background: var(--bg-2); position: relative; z-index: 2; }
   .list-sec.alt { background: var(--bg); }
   .l-head { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 40px; flex-wrap: wrap; }
-  .l-head h2 { font-size: clamp(56px, 7vw, 110px); }
+  .l-head h2 { font-size: clamp(34px, 4.4vw, 64px); }
   .l-head h2 em { font-style: normal; color: var(--rust-soft); }
   .rows { border-top: 1px solid var(--line); }
-  .r { display: grid; grid-template-columns: 90px 1fr auto; align-items: center; gap: 24px; padding: 22px 0; border-bottom: 1px solid var(--line); cursor: default; transition: padding .35s, color .25s; }
+  .r { display: grid; grid-template-columns: 90px 1fr auto; align-items: center; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--line); cursor: default; transition: padding .35s, color .25s; }
   .r .idx { color: var(--muted); }
-  .r .t { font-family: var(--cond); font-weight: 600; font-size: clamp(36px, 4.4vw, 64px); text-transform: uppercase; line-height: 1; }
+  .r .t { font-family: var(--lite); font-weight: 300; font-size: clamp(24px, 2.8vw, 40px); letter-spacing: .1em; text-transform: uppercase; line-height: 1.1; }
+  .r .meta { display: block; margin-top: 10px; font-family: var(--lite); font-weight: 400; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--text-2); }
+  .r .meta b { font-weight: 400; color: var(--muted); padding: 0 .7em; }
   .r .d { color: var(--text-2); text-align: right; max-width: 34ch; font-size: 14px; }
   .r .thumb { display: none; }
   .r:hover { padding-left: 16px; color: var(--rust-soft); }
@@ -135,18 +140,18 @@
   /* Contact */
   .contact { padding: 140px 0 120px; border-top: 1px solid var(--line); position: relative; z-index: 2; background: var(--bg); }
   .c-grid { display: grid; grid-template-columns: 7fr 5fr; gap: 80px; align-items: start; }
-  .contact h2 { font-size: clamp(72px, 10vw, 160px); }
+  .contact h2 { font-size: clamp(38px, 5vw, 76px); }
   .contact h2 em { font-style: normal; color: var(--rust-soft); display: block; }
   .c-info { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; }
   .c-info .k { color: var(--muted); margin-bottom: 6px; }
-  .c-info .v { font-family: var(--cond); font-weight: 600; font-size: 30px; text-transform: uppercase; line-height: 1.1; }
+  .c-info .v { font-family: var(--lite); font-weight: 300; font-size: 22px; letter-spacing: .08em; text-transform: uppercase; line-height: 1.1; }
   .c-info small { display: block; color: var(--text-2); font-size: 14px; margin-top: 4px; }
   form { display: grid; gap: 24px; background: var(--bg-3); padding: 36px; border-top: 3px solid var(--rust); }
   label { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
   input, select, textarea { width: 100%; background: transparent; border: 0; border-bottom: 1px solid rgba(236,234,230,.25); color: var(--text); font: inherit; font-size: 16px; padding: 6px 0 12px; outline: none; border-radius: 0; -webkit-appearance: none; appearance: none; resize: none; }
   select option { color: #111; }
   input:focus, select:focus, textarea:focus { border-color: var(--rust); }
-  .btn { padding: 18px 26px; background: var(--rust); color: var(--ink); border: 0; cursor: pointer; font-family: var(--cond); font-weight: 700; font-size: 22px; letter-spacing: .06em; text-transform: uppercase; transition: background .3s; }
+  .btn { padding: 18px 26px; background: var(--rust); color: var(--ink); border: 0; border-radius: 999px; cursor: pointer; font-family: var(--lite); font-weight: 500; font-size: 14px; letter-spacing: .2em; text-transform: uppercase; transition: background .3s; }
   .btn:hover { background: var(--rust-soft); }
 
   footer { border-top: 1px solid var(--line); padding: 26px 0 110px; color: var(--muted); position: relative; z-index: 2; background: var(--bg); }
@@ -168,7 +173,9 @@
     .wrap { padding: 0 20px; }
     header .wrap { height: 78px; }
     .menu-btn span { display: none; }
-    .brand b { font-size: 24px; }
+    .brand b { font-size: 16px; letter-spacing: .18em; margin-bottom: 6px; }
+    .r .meta { font-size: 11px; letter-spacing: .1em; }
+    .r .meta b { padding: 0 .4em; }
     .hcta { padding: 10px 12px; font-size: 10px; }
     .hero-bar nav { display: none; }
     .hero-bar .wrap { height: 54px; }
@@ -190,7 +197,7 @@
     .dots { display: none; }
     .menu-close { left: 20px; top: 26px; }
     .mbar { display: grid; grid-template-columns: 1fr 1fr; position: fixed; inset: auto 0 0 0; z-index: 40; }
-    .mbar a { padding: 16px; text-align: center; font-family: var(--cond); font-weight: 700; font-size: 20px; letter-spacing: .08em; text-transform: uppercase; }
+    .mbar a { padding: 18px; text-align: center; font-family: var(--lite); font-weight: 400; font-size: 14px; letter-spacing: .2em; text-transform: uppercase; }
     .mbar a:first-child { background: var(--bg-3); border-top: 1px solid var(--line); }
     .mbar a:last-child { background: var(--rust); color: var(--ink); }
   }
@@ -210,7 +217,7 @@
   <div class="wrap">
     <button class="menu-btn mono" aria-label="Menüyü aç" aria-expanded="false"><i></i><span>Menü</span></button>
     <a href="#" class="brand"><b>Ozan İskender</b><span>İNŞAAT MÜHENDİSİ</span></a>
-    <a href="#iletisim" class="hcta">İletişim</a>
+    <a href="#iletisim" class="hcta pill">İletişim</a>
   </div>
 </header>
 
@@ -230,7 +237,7 @@
   <video class="bgv" autoplay muted loop playsinline preload="auto" poster="video/hero-poster.jpg" data-mobile="video/hero-mobil.mp4" data-mobile-poster="video/hero-mobil-poster.jpg" aria-hidden="true"><source src="video/hero.mp4" type="video/mp4"></video>
   <div class="hero-in">
     <h1 class="hero-line">Sağlam yapı, sahada başlar</h1>
-    <a href="#ikinci" class="hero-cta mono">Keşfet</a>
+    <a href="#ikinci" class="hero-cta pill">Keşfet</a>
   </div>
   <div class="hero-bar">
     <div class="wrap mono">
@@ -243,10 +250,10 @@
 <section class="seq" id="ikinci">
   <div class="seq-in">
     <video class="bgv" muted loop playsinline preload="metadata" poster="video/seq-poster.jpg" data-mobile="video/seq-mobil.mp4" data-mobile-poster="video/seq-mobil-poster.jpg" aria-hidden="true"><source src="video/seq.mp4" type="video/mp4"></video>
-    <div class="words cond" aria-label="Planla, inşa et, teslim et">
+    <div class="words heavy" aria-label="Planla, inşa et, teslim et">
       <span class="on">Planla</span><span>İnşa et</span><span>Teslim et</span>
     </div>
-    <a href="#santiyeler" class="seq-cta mono">Şantiyeleri gör</a>
+    <a href="#santiyeler" class="seq-cta pill">Şantiyeleri gör</a>
     <div class="seq-prog"><i></i><i></i><i></i></div>
   </div>
 </section>
@@ -300,9 +307,9 @@
       <span class="tag">Temsili görseller · gerçek bilgiler gelecek</span>
     </div>
     <div class="rows">
-      <div class="r" data-img="img/s-1.jpg"><span class="idx mono">Ş-01</span><span class="t">Şantiye adı</span><span class="d mono">Konum · Kaba inşaat</span><img class="thumb" src="img/s-1.jpg" alt="" loading="lazy"></div>
-      <div class="r" data-img="img/s-2.jpg"><span class="idx mono">Ş-02</span><span class="t">Şantiye adı</span><span class="d mono">Konum · Temel</span><img class="thumb" src="img/s-2.jpg" alt="" loading="lazy"></div>
-      <div class="r" data-img="img/s-3.jpg"><span class="idx mono">Ş-03</span><span class="t">Şantiye adı</span><span class="d mono">Konum · Kaba inşaat</span><img class="thumb" src="img/s-3.jpg" alt="" loading="lazy"></div>
+      <div class="r" data-img="img/s-1.jpg"><span class="idx mono">Ş-01</span><span><span class="t">Şantiye adı</span><span class="meta">İlçe<b>|</b>— kat<b>|</b>— daire<b>|</b>Kaba inşaat</span></span><img class="thumb" src="img/s-1.jpg" alt="" loading="lazy"></div>
+      <div class="r" data-img="img/s-2.jpg"><span class="idx mono">Ş-02</span><span><span class="t">Şantiye adı</span><span class="meta">İlçe<b>|</b>— kat<b>|</b>— daire<b>|</b>Temel</span></span><img class="thumb" src="img/s-2.jpg" alt="" loading="lazy"></div>
+      <div class="r" data-img="img/s-3.jpg"><span class="idx mono">Ş-03</span><span><span class="t">Şantiye adı</span><span class="meta">İlçe<b>|</b>— kat<b>|</b>— daire<b>|</b>Kaba inşaat</span></span><img class="thumb" src="img/s-3.jpg" alt="" loading="lazy"></div>
     </div>
   </div>
 </section>
