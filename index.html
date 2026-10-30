@@ -59,41 +59,41 @@
   .menu-close { position: absolute; top: 32px; left: 40px; background: none; border: 0; color: var(--text); cursor: pointer; }
 
   /* Hero */
-  .hero { position: relative; height: 100vh; height: 100svh; min-height: 600px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow: hidden; }
+  .hero { position: relative; height: 100vh; height: 100svh; min-height: 600px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; text-align: center; overflow: hidden; }
   .hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.1); animation: zoom 24s ease-out forwards; }
   @keyframes zoom { to { transform: scale(1); } }
-  .hero::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(13,14,15,.35) 0%, rgba(13,14,15,.75) 100%); }
-  .hero-in { position: relative; z-index: 1; padding: 0 20px; }
-  .hero h1 { font-size: clamp(64px, 11vw, 176px); opacity: 0; animation: up 1.3s .2s ease forwards; }
-  .hero h1 span { display: block; color: var(--rust-soft); }
-  .hero p { margin-top: 26px; color: var(--text-2); opacity: 0; animation: up 1.3s .6s ease forwards; }
+  .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,14,15,.5) 0%, rgba(13,14,15,0) 25%, rgba(13,14,15,0) 55%, rgba(13,14,15,.75) 100%); }
+  .hero-in { position: relative; z-index: 1; padding: 0 20px 124px; display: flex; flex-direction: column; align-items: center; gap: 22px; }
+  .hero-line { font-family: var(--cond); font-weight: 500; font-size: clamp(20px, 2.2vw, 30px); letter-spacing: .22em; text-transform: uppercase; line-height: 1.2; opacity: 0; animation: up 1.3s 1.9s ease forwards; }
+  .hero-cta { border: 1px solid rgba(236,234,230,.55); padding: 12px 26px; opacity: 0; animation: up 1.3s 2.2s ease forwards; transition: background .3s, border-color .3s; }
+  .hero-cta:hover { background: var(--rust); border-color: var(--rust); }
+
+  /* Intro (BIG/Zaha style) */
+  .intro { position: fixed; inset: 0; z-index: 100; background: #000; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 18px; animation: lift 1s 1.3s cubic-bezier(.7,0,.2,1) forwards; }
+  .intro span { font-size: clamp(34px, 5vw, 64px); letter-spacing: .1em; opacity: 0; animation: up .9s .15s ease forwards; }
+  .intro i { width: 0; height: 2px; background: var(--rust); animation: grow 1s .3s ease forwards; }
+  @keyframes grow { to { width: 120px; } }
+  @keyframes lift { to { transform: translateY(-100%); visibility: hidden; } }
+
+  /* Second sequence (Elliman: word by word) */
+  .seq { position: relative; height: 300vh; }
+  .seq-in { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .seq-in > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .seq-in::after { content: ""; position: absolute; inset: 0; background: rgba(13,14,15,.5); }
+  .words { position: relative; z-index: 1; display: grid; text-align: center; }
+  .words span { grid-area: 1 / 1; font-size: clamp(80px, 14vw, 230px); opacity: 0; transform: translateY(40px); transition: opacity .6s ease, transform .6s ease; }
+  .words span.on { opacity: 1; transform: none; }
+  .words span.past { opacity: 0; transform: translateY(-40px); }
+  .seq-cta { position: absolute; z-index: 1; bottom: 110px; left: 50%; transform: translateX(-50%); border: 1px solid rgba(236,234,230,.55); padding: 12px 26px; white-space: nowrap; transition: background .3s, border-color .3s; }
+  .seq-cta:hover { background: var(--rust); border-color: var(--rust); }
+  .seq-prog { position: absolute; z-index: 1; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; }
+  .seq-prog i { width: 40px; height: 2px; background: rgba(236,234,230,.25); transition: background .4s; }
+  .seq-prog i.on { background: var(--rust); }
   @keyframes up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
   .hero-bar { position: absolute; z-index: 1; left: 0; right: 0; bottom: 0; border-top: 1px solid var(--line); }
   .hero-bar .wrap { display: flex; justify-content: space-between; align-items: center; height: 64px; }
   .hero-bar nav { display: flex; gap: 32px; }
   .hero-bar a:hover { color: var(--rust-soft); }
-
-  /* Ticker */
-  .ticker { background: var(--rust); color: var(--ink); overflow: hidden; white-space: nowrap; }
-  .ticker div { display: inline-flex; gap: 40px; padding: 14px 0; animation: tick 38s linear infinite; }
-  .ticker span { font-family: var(--cond); font-weight: 600; font-size: 22px; letter-spacing: .06em; text-transform: uppercase; }
-  .ticker span::after { content: "■"; font-size: 9px; margin-left: 40px; vertical-align: middle; }
-  @keyframes tick { to { transform: translateX(-50%); } }
-
-  /* Story (typographic) */
-  .story { padding: 150px 0 140px; }
-  .story-grid { display: grid; grid-template-columns: 7fr 5fr; gap: 72px; align-items: end; }
-  .story h2 { font-size: clamp(72px, 10vw, 156px); }
-  .story h2 em { font-style: normal; color: var(--rust-soft); }
-  .story p { font-size: 18px; color: var(--text-2); }
-  .story p + p { margin-top: 16px; }
-  .story .lbl { margin-bottom: 40px; color: var(--muted); display: flex; gap: 14px; align-items: center; }
-  .story .lbl b { color: var(--rust); font-weight: 500; }
-  .facts { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 90px; border-top: 1px solid var(--line); }
-  .facts > div { padding: 24px 24px 0 0; }
-  .facts > div + div { padding-left: 24px; border-left: 1px solid var(--line); }
-  .facts .k { color: var(--muted); }
-  .facts .v { font-family: var(--cond); font-weight: 600; font-size: 34px; text-transform: uppercase; margin-top: 4px; }
 
   /* Chapters (Elliman: stacked full-screen) */
   .chapters { position: relative; }
@@ -108,28 +108,6 @@
   .chap .bar span { height: 2px; background: rgba(236,234,230,.22); }
   .chap .bar span.on { background: var(--rust); }
   .chap-top { position: absolute; z-index: 1; top: 34px; left: 40px; right: 40px; display: flex; justify-content: space-between; color: rgba(236,234,230,.7); }
-
-  /* Process (Function: light section, cards) */
-  .process { background: var(--paper); color: var(--ink); padding: 130px 0; position: relative; z-index: 2; }
-  .p-head { display: flex; justify-content: space-between; align-items: end; gap: 30px; flex-wrap: wrap; margin-bottom: 64px; }
-  .p-head h2 { font-size: clamp(56px, 7vw, 110px); }
-  .p-head h2 em { font-style: normal; color: var(--rust); }
-  .process .tag { color: var(--rust); border-color: rgba(210,87,44,.55); }
-  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .card { background: var(--paper-2); padding: 34px 30px 30px; display: flex; flex-direction: column; min-height: 440px; }
-  .card .n { font-family: var(--mono); font-size: 12px; color: var(--rust); }
-  .card h3 { font-family: var(--cond); font-weight: 700; font-size: 44px; text-transform: uppercase; line-height: 1; margin: 12px 0 10px; }
-  .card p { font-size: 15px; color: #4a4843; }
-  .viz { margin-top: auto; padding-top: 28px; }
-  .gantt { display: grid; gap: 8px; }
-  .gantt div { display: grid; grid-template-columns: 70px 1fr; align-items: center; gap: 10px; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; color: #6a675f; text-transform: uppercase; }
-  .gantt i { display: block; height: 10px; background: var(--ink); border-radius: 2px; }
-  .gantt i.r { background: var(--rust); }
-  .checks { display: grid; gap: 8px; }
-  .checks div { display: flex; justify-content: space-between; align-items: center; background: var(--paper); padding: 10px 12px; font-size: 13px; }
-  .checks b { font-family: var(--mono); font-weight: 500; font-size: 10px; letter-spacing: .1em; color: var(--rust); }
-  .key { background: var(--ink); color: var(--paper); padding: 18px; display: flex; justify-content: space-between; align-items: end; }
-  .key .cond { font-size: 40px; }
 
   /* Lists (Snøhetta: hover preview) */
   .list-sec { padding: 130px 0 120px; border-top: 1px solid var(--line); background: var(--bg-2); position: relative; z-index: 2; }
@@ -175,10 +153,13 @@
   .dots a.on { background: #fff; }
 
   .mbar { display: none; }
+  body.loading .mbar, body.loading .dots { visibility: hidden; }
   .rv { opacity: 0; transform: translateY(22px); transition: opacity 1s, transform 1s; }
   .rv.in { opacity: 1; transform: none; }
 
   @media (max-width: 900px) {
+    .c-grid { grid-template-columns: 1fr; gap: 36px; }
+    .list-sec, .contact { padding: 96px 0; }
     .wrap { padding: 0 20px; }
     header .wrap { height: 78px; }
     .menu-btn span { display: none; }
@@ -187,16 +168,12 @@
     .hero-bar nav { display: none; }
     .hero-bar .wrap { height: 54px; }
     .hero { min-height: 0; }
-    .story { padding: 100px 0; }
-    .story-grid, .c-grid { grid-template-columns: 1fr; gap: 36px; }
-    .facts { grid-template-columns: 1fr; margin-top: 56px; }
-    .facts > div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); margin-top: 18px; }
+    .hero-in { padding-bottom: 150px; }
+    .seq-cta { bottom: 140px; }
+    .seq-prog { bottom: 100px; }
     .chap .bar { left: 20px; right: 20px; bottom: 90px; }
     .chap-top { left: 20px; right: 20px; top: 92px; }
     .chap p { padding: 0 24px; }
-    .process, .list-sec, .contact { padding: 96px 0; }
-    .cards { grid-template-columns: 1fr; }
-    .card { min-height: 0; }
     .r { grid-template-columns: 1fr 96px; gap: 6px 16px; }
     .r .idx { grid-column: 1 / -1; }
     .r .d { text-align: left; grid-column: 1; }
@@ -213,13 +190,16 @@
     .mbar a:last-child { background: var(--rust); color: var(--ink); }
   }
   @media (prefers-reduced-motion: reduce) {
-    .hero > img, .hero h1, .hero p { animation: none; opacity: 1; transform: none; }
-    .ticker div { animation: none; }
+    .hero > img, .hero-line, .hero-cta { animation: none; opacity: 1; transform: none; }
+    .intro { display: none; }
+    .words span { transition: none; }
     .rv { opacity: 1; transform: none; transition: none; }
   }
 </style>
 </head>
-<body>
+<body class="loading">
+
+<div class="intro" id="intro" aria-hidden="true"><span class="cond">Ozan İskender</span><i></i></div>
 
 <header>
   <div class="wrap">
@@ -231,112 +211,67 @@
 
 <div class="menu" id="menu" aria-hidden="true">
   <button class="menu-close mono">✕ Kapat</button>
-  <a class="cond" href="#hikaye"><small>01</small>Hikâye</a>
-  <a class="cond" href="#asamalar"><small>02</small>Aşamalar</a>
-  <a class="cond" href="#hizmetler"><small>03</small>Hizmetler</a>
-  <a class="cond" href="#santiyeler"><small>04</small>Şantiyeler</a>
-  <a class="cond" href="#iletisim"><small>05</small>İletişim</a>
+  <a class="cond" href="#asamalar"><small>01</small>Aşamalar</a>
+  <a class="cond" href="#hizmetler"><small>02</small>Hizmetler</a>
+  <a class="cond" href="#santiyeler"><small>03</small>Şantiyeler</a>
+  <a class="cond" href="#iletisim"><small>04</small>İletişim</a>
 </div>
 
 <nav class="dots" aria-hidden="true">
-  <a href="#top" class="on"></a><a href="#hikaye"></a><a href="#asamalar"></a><a href="#surec"></a><a href="#hizmetler"></a><a href="#santiyeler"></a><a href="#iletisim"></a>
+  <a href="#top" class="on"></a><a href="#ikinci"></a><a href="#asamalar"></a><a href="#hizmetler"></a><a href="#santiyeler"></a><a href="#iletisim"></a>
 </nav>
 
 <div class="hero" id="top">
   <img src="img/hero.jpg" alt="">
   <div class="hero-in">
-    <h1 class="cond">Sağlam yapı<span>sahada başlar</span></h1>
-    <p class="mono">Bursa · Nilüfer — 3 aktif şantiye</p>
+    <h1 class="hero-line">Sağlam yapı, sahada başlar</h1>
+    <a href="#ikinci" class="hero-cta mono">Keşfet</a>
   </div>
   <div class="hero-bar">
     <div class="wrap mono">
-      <nav><a href="#hikaye">Hikâye</a><a href="#asamalar">Aşamalar</a><a href="#hizmetler">Hizmetler</a><a href="#santiyeler">Şantiyeler</a></nav>
+      <nav><a href="#asamalar">Aşamalar</a><a href="#hizmetler">Hizmetler</a><a href="#santiyeler">Şantiyeler</a></nav>
       <span>40.21° K · 28.97° D</span>
     </div>
   </div>
 </div>
 
-<div class="ticker" aria-hidden="true"><div>
-  <span>Statik proje</span><span>Şantiye şefliği</span><span>Fenni mesuliyet</span><span>Uygulama</span><span>Koordinasyon</span><span>Bursa</span>
-  <span>Statik proje</span><span>Şantiye şefliği</span><span>Fenni mesuliyet</span><span>Uygulama</span><span>Koordinasyon</span><span>Bursa</span>
-</div></div>
-
-<section class="story" id="hikaye">
-  <div class="wrap">
-    <div class="lbl mono rv"><b>01</b> Hikâye</div>
-    <div class="story-grid">
-      <h2 class="cond rv">Şantiyede <em>büyüdü.</em></h2>
-      <div class="rv">
-        <p>Ozan İskender çocukluğunu babasının şantiyelerinde geçirdi. Betonun nasıl döküldüğünü, bir yapının nasıl yükseldiğini kitaplardan önce sahada gördü.</p>
-        <p>Bugün inşaat mühendisi olarak sıfırdan kurduğu firmasıyla müteahhitlerin yanında, işin başında.</p>
-      </div>
+<section class="seq" id="ikinci">
+  <div class="seq-in">
+    <img src="img/h-donati.jpg" alt="">
+    <div class="words cond" aria-label="Planla, inşa et, teslim et">
+      <span class="on">Planla</span><span>İnşa et</span><span>Teslim et</span>
     </div>
-    <div class="facts rv">
-      <div><div class="k mono">Meslek</div><div class="v">İnşaat mühendisi</div></div>
-      <div><div class="k mono">Şehir</div><div class="v">Bursa</div></div>
-      <div><div class="k mono">Bugün</div><div class="v">3 aktif şantiye</div></div>
-    </div>
+    <a href="#santiyeler" class="seq-cta mono">Şantiyeleri gör</a>
+    <div class="seq-prog"><i></i><i></i><i></i></div>
   </div>
 </section>
 
 <div class="chapters" id="asamalar">
   <section class="chap">
     <img src="img/s-2.jpg" alt="" loading="lazy">
-    <div class="chap-top mono"><span>02 · Aşamalar</span><span>01 / 04</span></div>
+    <div class="chap-top mono"><span>01 · Aşamalar</span><span>01 / 04</span></div>
     <div class="chap-in"><div class="num mono">Aşama 01</div><h2 class="cond">Temel</h2><p>Zemin, kazı ve temel. Yapının görünmeyen ama her şeyi taşıyan kısmı.</p></div>
     <div class="bar"><span class="on"></span><span></span><span></span><span></span></div>
   </section>
   <section class="chap">
     <img src="img/h-uygulama.jpg" alt="" loading="lazy">
-    <div class="chap-top mono"><span>02 · Aşamalar</span><span>02 / 04</span></div>
+    <div class="chap-top mono"><span>01 · Aşamalar</span><span>02 / 04</span></div>
     <div class="chap-in"><div class="num mono">Aşama 02</div><h2 class="cond">Kaba</h2><p>Kolon, kiriş, döşeme. Demir ve beton kat kat yükselir.</p></div>
     <div class="bar"><span class="on"></span><span class="on"></span><span></span><span></span></div>
   </section>
   <section class="chap">
     <img src="img/c-ince.jpg" alt="" loading="lazy">
-    <div class="chap-top mono"><span>02 · Aşamalar</span><span>03 / 04</span></div>
+    <div class="chap-top mono"><span>01 · Aşamalar</span><span>03 / 04</span></div>
     <div class="chap-in"><div class="num mono">Aşama 03</div><h2 class="cond">İnce</h2><p>Duvar, tesisat, yalıtım ve son kat işleri.</p></div>
     <div class="bar"><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div>
   </section>
   <section class="chap">
     <img src="img/c-teslim.jpg" alt="" loading="lazy">
-    <div class="chap-top mono"><span>02 · Aşamalar</span><span>04 / 04</span></div>
+    <div class="chap-top mono"><span>01 · Aşamalar</span><span>04 / 04</span></div>
     <div class="chap-in"><div class="num mono">Aşama 04</div><h2 class="cond">Teslim</h2><p>Projesine uygun, eksiksiz bir yapı.</p></div>
     <div class="bar"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></div>
   </section>
 </div>
-
-<section class="process" id="surec">
-  <div class="wrap">
-    <div class="p-head rv">
-      <h2 class="cond">Nasıl <em>çalışıyoruz</em></h2>
-      <span class="tag">Taslak · süreç Ozan'la doğrulanacak</span>
-    </div>
-    <div class="cards">
-      <div class="card rv">
-        <span class="n">01</span><h3>Proje</h3><p>İhtiyaç, bütçe ve takvim netleşir; proje hazırlanır.</p>
-        <div class="viz gantt">
-          <div>Proje<i style="width:42%" class="r"></i></div>
-          <div>Ruhsat<i style="width:30%;margin-left:30%"></i></div>
-          <div>Temel<i style="width:34%;margin-left:52%"></i></div>
-          <div>Kaba<i style="width:44%;margin-left:56%"></i></div>
-        </div>
-      </div>
-      <div class="card rv">
-        <span class="n">02</span><h3>Saha</h3><p>İş, sahada projeye uygun ve adım adım kontrol edilerek ilerler.</p>
-        <div class="viz checks">
-          <div>Donatı kontrolü <b>Tamam</b></div>
-          <div>Beton dökümü <b>Tamam</b></div>
-          <div>Kalıp sökümü <b>Sırada</b></div>
-        </div>
-      </div>
-      <div class="card rv">
-        <span class="n">03</span><h3>Teslim</h3><p>Yapı, projesine ve mevzuata uygun olarak tamamlanır.</p>
-        <div class="viz key"><span class="cond">Teslim</span><span class="mono">Aşama 04 / 04</span></div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section class="list-sec" id="hizmetler">
   <div class="wrap">
@@ -345,10 +280,10 @@
       <span class="tag">Taslak · kapsam Ozan'la doğrulanacak</span>
     </div>
     <div class="rows">
-      <div class="r" data-img="img/h-statik.jpg"><span class="idx mono">03.1</span><span class="t">Statik proje</span><span class="d">Taşıyıcı sistem, hesaplar ve uygulama projeleri.</span><img class="thumb" src="img/h-statik.jpg" alt="" loading="lazy"></div>
-      <div class="r" data-img="img/h-saha.jpg"><span class="idx mono">03.2</span><span class="t">Şantiye şefliği</span><span class="d">Müteahhidin yanında, işin sahada projeye uygun ilerlemesi.</span><img class="thumb" src="img/h-saha.jpg" alt="" loading="lazy"></div>
-      <div class="r" data-img="img/h-donati.jpg"><span class="idx mono">03.3</span><span class="t">Fenni mesuliyet</span><span class="d">Yapının mevzuata ve projesine uygunluğunun takibi.</span><img class="thumb" src="img/h-donati.jpg" alt="" loading="lazy"></div>
-      <div class="r" data-img="img/h-uygulama.jpg"><span class="idx mono">03.4</span><span class="t">Uygulama</span><span class="d">Ekiplerin, malzemenin ve takvimin sahada birlikte yürümesi.</span><img class="thumb" src="img/h-uygulama.jpg" alt="" loading="lazy"></div>
+      <div class="r" data-img="img/h-statik.jpg"><span class="idx mono">02.1</span><span class="t">Statik proje</span><span class="d">Taşıyıcı sistem, hesaplar ve uygulama projeleri.</span><img class="thumb" src="img/h-statik.jpg" alt="" loading="lazy"></div>
+      <div class="r" data-img="img/h-saha.jpg"><span class="idx mono">02.2</span><span class="t">Şantiye şefliği</span><span class="d">Müteahhidin yanında, işin sahada projeye uygun ilerlemesi.</span><img class="thumb" src="img/h-saha.jpg" alt="" loading="lazy"></div>
+      <div class="r" data-img="img/h-donati.jpg"><span class="idx mono">02.3</span><span class="t">Fenni mesuliyet</span><span class="d">Yapının mevzuata ve projesine uygunluğunun takibi.</span><img class="thumb" src="img/h-donati.jpg" alt="" loading="lazy"></div>
+      <div class="r" data-img="img/h-uygulama.jpg"><span class="idx mono">02.4</span><span class="t">Uygulama</span><span class="d">Ekiplerin, malzemenin ve takvimin sahada birlikte yürümesi.</span><img class="thumb" src="img/h-uygulama.jpg" alt="" loading="lazy"></div>
     </div>
   </div>
 </section>
@@ -414,6 +349,18 @@
     r.addEventListener('mouseleave', () => peek.classList.remove('on'));
     r.addEventListener('mousemove', e => { peek.style.left = e.clientX + 'px'; peek.style.top = e.clientY + 'px'; });
   });
+
+  setTimeout(() => document.body.classList.remove('loading'), matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 2300);
+
+  // İkinci sekans: kaydırdıkça kelime kelime
+  const seq = document.getElementById('ikinci'), words = [...seq.querySelectorAll('.words span')], prog = [...seq.querySelectorAll('.seq-prog i')];
+  const seqStep = () => {
+    const r = seq.getBoundingClientRect(), t = Math.min(.999, Math.max(0, -r.top / (r.height - innerHeight)));
+    const k = Math.floor(t * words.length);
+    words.forEach((w, i) => { w.classList.toggle('on', i === k); w.classList.toggle('past', i < k); });
+    prog.forEach((p, i) => p.classList.toggle('on', i <= k));
+  };
+  addEventListener('scroll', seqStep, { passive: true }); seqStep();
 
   // Bölüm noktaları
   const dots = [...document.querySelectorAll('.dots a')], secs = dots.map(d => document.querySelector(d.getAttribute('href')));
