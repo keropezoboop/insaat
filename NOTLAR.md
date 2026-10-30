@@ -14,9 +14,12 @@
 - Açılış videosunda geçişler düz kesme (üst üste binen geçişler bulanık görünüyordu). Döngü ~12 sn, siyaha kararma yok.
 - Şantiye satırı Elliman ilan satırı gibi: `İLÇE | — KAT | — DAİRE | AŞAMA` (değerler Ozan'dan gelecek).
 - Akış: açılış animasyonu (siyah ekranda isim) → **1. ekran:** Bursa drone montajı (Uludağ, gündüz şehir, akşam sahil), altta tek satır slogan → **2. ekran:** gece binası videosu, üstünde kendiliğinden değişen kelimeler PLANLA / İNŞA ET / TESLİM ET → Aşamalar (Temel, Kaba, İnce, Teslim; üst üste kayan tam ekranlar) → Hizmetler (liste, üstüne gelince fotoğraf) → Şantiyeler (liste) → İletişim.
+- **Yeni sıra:** Açılış → PLANLA / İNŞA ET → Aşamalar → **Önce / Bugün** (tam ekran sürüklemeli kaydırıcı; Elliman'ın öne çıkan ilan yeri) → **Sıradaki yapı sizin** (Elliman "The next move is yours": sekmeler TÜMÜ / TEMEL / KABA İNŞAAT / İNCE İŞLER / TAMAMLANDI, boş sekme gizlenir; şantiye kartları) → Hizmetler → İletişim.
+- Önce/sonra için Ozan'dan **aynı noktadan, aynı açıyla** çekilmiş fotoğraf çifti lazım (kazı ve bugün). Şu an stok, "temsili" işaretli.
 - Kaldırılanlar: hikâye bölümü ("tüm inşaatçıların hikâyesi aynı"), "Nasıl çalışıyoruz" kartları, kayan turuncu şerit.
 
 ## Yapılacaklar
+- [ ] Aşamalar "Teslim" ekranındaki fotoğraf (`img/c-teslim.jpg`) ünlü bir yapı (Rock and Roll Hall of Fame); Ozan'ın işi gibi durmasın, değiştir.
 - [ ] 2. ekran için gerçek bir **inşaat videosu** (vinç, beton dökümü, demir bağlama). Şu an gece binası çekimi var.
 - [ ] Gündüz Bursa videosunun 4K hali bulunursa değiştir (şu an 1080p kaynak).
 - [ ] BIG'e tekrar bak: şantiye listesi için her projeye küçük simge fikri.

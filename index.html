@@ -137,6 +137,44 @@
   .peek img { width: 100%; height: 100%; object-fit: cover; }
   .peek span { position: absolute; left: 10px; bottom: 8px; color: #fff; }
 
+  /* Önce / sonra (Elliman: öne çıkan ilan yeri) */
+  .ba { position: relative; z-index: 2; height: 100vh; height: 100svh; overflow: hidden; background: var(--bg); user-select: none; touch-action: pan-y; cursor: ew-resize; }
+  .ba img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+  .ba .after { clip-path: inset(0 0 0 var(--x, 50%)); }
+  .ba::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,14,15,.45) 0%, rgba(13,14,15,0) 22%, rgba(13,14,15,0) 60%, rgba(13,14,15,.85) 100%); pointer-events: none; }
+  .ba-line { position: absolute; z-index: 2; top: 0; bottom: 0; left: var(--x, 50%); width: 1px; background: rgba(236,234,230,.8); pointer-events: none; }
+  .ba-knob { position: absolute; top: 50%; left: 0; width: 56px; height: 56px; transform: translate(-50%, -50%); border-radius: 50%; border: 1px solid rgba(236,234,230,.8); background: rgba(13,14,15,.35); backdrop-filter: blur(4px); display: grid; place-items: center; font-family: var(--lite); font-size: 15px; letter-spacing: .1em; }
+  .ba-lab { position: absolute; z-index: 2; top: 50%; transform: translateY(-50%); color: rgba(236,234,230,.85); pointer-events: none; }
+  .ba-lab.l { left: 40px; } .ba-lab.r { right: 40px; }
+  .ba-top { position: absolute; z-index: 2; top: 34px; left: 40px; right: 40px; display: flex; justify-content: space-between; align-items: center; color: rgba(236,234,230,.7); pointer-events: none; }
+  .ba-cap { position: absolute; z-index: 2; left: 0; right: 0; bottom: 64px; text-align: center; pointer-events: none; }
+  .ba-cap h2 { font-size: clamp(26px, 3vw, 42px); }
+  .ba-cap .meta { margin-top: 12px; font-family: var(--lite); font-size: 13px; letter-spacing: .2em; text-transform: uppercase; color: var(--text-2); }
+  .ba-cap .meta b, .card .meta b { font-weight: 400; color: var(--muted); padding: 0 .7em; }
+
+  /* Sıradaki yapı sizin (Elliman: The next move is yours) */
+  .next { position: relative; z-index: 2; background: linear-gradient(180deg, #121318 0%, var(--bg) 100%); padding: 110px 0 120px; text-align: center; border-top: 1px solid var(--line); }
+  .next .eyebrow { font-family: var(--lite); font-size: 14px; letter-spacing: .2em; text-transform: uppercase; }
+  .next h2 { margin-top: 14px; font-size: clamp(32px, 4.4vw, 64px); }
+  .next .vline { width: 1px; height: 110px; background: var(--text); margin: 36px auto 40px; opacity: .8; }
+  .tabs { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px 36px; margin-bottom: 40px; }
+  .tabs button { background: none; border: 0; color: var(--muted); cursor: pointer; font-family: var(--lite); font-size: 14px; letter-spacing: .2em; text-transform: uppercase; padding: 4px 0; transition: color .25s; }
+  .tabs button:hover { color: var(--text-2); }
+  .tabs button.on { color: var(--text); font-weight: 500; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .card { position: relative; aspect-ratio: 7/10; overflow: hidden; text-align: center; }
+  .card[hidden] { display: none; }
+  .card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2,.6,.2,1); }
+  .card:hover img { transform: scale(1.04); }
+  .card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,14,15,0) 50%, rgba(13,14,15,.88) 100%); }
+  .card-in { position: absolute; z-index: 1; left: 16px; right: 16px; bottom: 30px; }
+  .card h3 { font-family: var(--lite); font-weight: 300; font-size: clamp(24px, 2.4vw, 34px); letter-spacing: .06em; line-height: 1.15; }
+  .card .meta { margin-top: 10px; font-family: var(--lite); font-size: 13px; letter-spacing: .18em; text-transform: uppercase; }
+  .card .st { margin-top: 6px; font-family: var(--lite); font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--rust-soft); }
+  .next .tag { margin-top: 26px; }
+  .next .pill { display: inline-block; margin-top: 44px; border: 1px solid rgba(236,234,230,.55); padding: 14px 32px; transition: background .3s, border-color .3s; }
+  .next .pill:hover { background: var(--rust); border-color: var(--rust); }
+
   /* Contact */
   .contact { padding: 140px 0 120px; border-top: 1px solid var(--line); position: relative; z-index: 2; background: var(--bg); }
   .c-grid { display: grid; grid-template-columns: 7fr 5fr; gap: 80px; align-items: start; }
@@ -189,6 +227,14 @@
     .r { grid-template-columns: 1fr 96px; gap: 6px 16px; }
     .r .idx { grid-column: 1 / -1; }
     .r .d { text-align: left; grid-column: 1; }
+    .ba-top, .ba-lab.l { left: 20px; } .ba-top { right: 20px; top: 92px; justify-content: center; } .ba-top > span:first-child { display: none; } .ba-lab.r { right: 20px; }
+    .ba-cap { bottom: 96px; padding: 0 20px; }
+    .ba-cap .meta { font-size: 11px; letter-spacing: .12em; }
+    .next { padding: 90px 0; }
+    .next .vline { height: 70px; margin: 28px auto 30px; }
+    .tabs { gap: 8px 22px; } .tabs button { font-size: 12px; letter-spacing: .14em; }
+    .cards { grid-template-columns: 1fr; }
+    .card { aspect-ratio: 4/5; }
     .r .thumb { display: block; grid-column: 2; grid-row: 2 / span 2; width: 96px; aspect-ratio: 1; object-fit: cover; }
     .r:hover { padding-left: 0; }
     .peek { display: none; }
@@ -224,13 +270,13 @@
 <div class="menu" id="menu" aria-hidden="true">
   <button class="menu-close mono">✕ Kapat</button>
   <a class="cond" href="#asamalar"><small>01</small>Aşamalar</a>
-  <a class="cond" href="#hizmetler"><small>02</small>Hizmetler</a>
-  <a class="cond" href="#santiyeler"><small>03</small>Şantiyeler</a>
+  <a class="cond" href="#santiyeler"><small>02</small>Şantiyeler</a>
+  <a class="cond" href="#hizmetler"><small>03</small>Hizmetler</a>
   <a class="cond" href="#iletisim"><small>04</small>İletişim</a>
 </div>
 
 <nav class="dots" aria-hidden="true">
-  <a href="#top" class="on"></a><a href="#ikinci"></a><a href="#asamalar"></a><a href="#hizmetler"></a><a href="#santiyeler"></a><a href="#iletisim"></a>
+  <a href="#top" class="on"></a><a href="#ikinci"></a><a href="#asamalar"></a><a href="#once-sonra"></a><a href="#santiyeler"></a><a href="#hizmetler"></a><a href="#iletisim"></a>
 </nav>
 
 <div class="hero" id="top">
@@ -241,7 +287,7 @@
   </div>
   <div class="hero-bar">
     <div class="wrap mono">
-      <nav><a href="#asamalar">Aşamalar</a><a href="#hizmetler">Hizmetler</a><a href="#santiyeler">Şantiyeler</a></nav>
+      <nav><a href="#asamalar">Aşamalar</a><a href="#santiyeler">Şantiyeler</a><a href="#hizmetler">Hizmetler</a></nav>
       <span class="bar-r"><span>40.21° K · 28.97° D</span><button class="pp" aria-label="Videoyu durdur / oynat"></button></span>
     </div>
   </div>
@@ -285,6 +331,33 @@
   </section>
 </div>
 
+<section class="ba" id="once-sonra" aria-label="Önce ve sonra karşılaştırması">
+  <img src="img/s-2.jpg" alt="Kazı aşamasında şantiye (temsili)">
+  <img class="after" src="img/s-3.jpg" alt="Kaba inşaatı süren yapı (temsili)">
+  <div class="ba-top mono"><span>02 · Önce / Bugün</span><span class="tag">Temsili · aynı açıdan gerçek çekim gelecek</span></div>
+  <span class="ba-lab l mono">Önce</span><span class="ba-lab r mono">Bugün</span>
+  <div class="ba-line"><span class="ba-knob" aria-hidden="true">‹ ›</span></div>
+  <div class="ba-cap"><h2 class="cond">Şantiye adı</h2><div class="meta">İlçe<b>|</b>— kat<b>|</b>Kazıdan kaba inşaata</div></div>
+</section>
+
+<section class="next" id="santiyeler">
+  <div class="wrap">
+    <div class="eyebrow rv">Bursa · Şu an sahada</div>
+    <h2 class="cond rv">Sıradaki yapı sizin</h2>
+    <div class="vline"></div>
+    <div class="tabs" role="tablist">
+      <button class="on" data-f="tumu">Tümü</button><button data-f="temel">Temel</button><button data-f="kaba">Kaba inşaat</button><button data-f="ince">İnce işler</button><button data-f="tamam">Tamamlandı</button>
+    </div>
+    <div class="cards">
+      <div class="card" data-st="kaba"><img src="img/s-1.jpg" alt="" loading="lazy"><div class="card-in"><h3>Şantiye adı</h3><div class="meta">İlçe<b>|</b>— kat<b>|</b>— daire</div><div class="st">Devam ediyor · Kaba inşaat</div></div></div>
+      <div class="card" data-st="temel"><img src="img/s-2.jpg" alt="" loading="lazy"><div class="card-in"><h3>Şantiye adı</h3><div class="meta">İlçe<b>|</b>— kat<b>|</b>— daire</div><div class="st">Devam ediyor · Temel</div></div></div>
+      <div class="card" data-st="kaba"><img src="img/s-3.jpg" alt="" loading="lazy"><div class="card-in"><h3>Şantiye adı</h3><div class="meta">İlçe<b>|</b>— kat<b>|</b>— daire</div><div class="st">Devam ediyor · Kaba inşaat</div></div></div>
+    </div>
+    <span class="tag">Temsili görseller · gerçek bilgiler gelecek</span><br>
+    <a href="#iletisim" class="pill">Projenizi konuşalım</a>
+  </div>
+</section>
+
 <section class="list-sec" id="hizmetler">
   <div class="wrap">
     <div class="l-head rv">
@@ -300,19 +373,6 @@
   </div>
 </section>
 
-<section class="list-sec alt" id="santiyeler">
-  <div class="wrap">
-    <div class="l-head rv">
-      <h2 class="cond">Şu an <em>sahada</em></h2>
-      <span class="tag">Temsili görseller · gerçek bilgiler gelecek</span>
-    </div>
-    <div class="rows">
-      <div class="r" data-img="img/s-1.jpg"><span class="idx mono">Ş-01</span><span><span class="t">Şantiye adı</span><span class="meta">İlçe<b>|</b>— kat<b>|</b>— daire<b>|</b>Kaba inşaat</span></span><img class="thumb" src="img/s-1.jpg" alt="" loading="lazy"></div>
-      <div class="r" data-img="img/s-2.jpg"><span class="idx mono">Ş-02</span><span><span class="t">Şantiye adı</span><span class="meta">İlçe<b>|</b>— kat<b>|</b>— daire<b>|</b>Temel</span></span><img class="thumb" src="img/s-2.jpg" alt="" loading="lazy"></div>
-      <div class="r" data-img="img/s-3.jpg"><span class="idx mono">Ş-03</span><span><span class="t">Şantiye adı</span><span class="meta">İlçe<b>|</b>— kat<b>|</b>— daire<b>|</b>Kaba inşaat</span></span><img class="thumb" src="img/s-3.jpg" alt="" loading="lazy"></div>
-    </div>
-  </div>
-</section>
 
 <section class="contact" id="iletisim">
   <div class="wrap c-grid">
@@ -385,6 +445,24 @@
     else if (!e.isIntersecting) { clearInterval(timer); timer = null; }
   }, { threshold: .5 }).observe(seq);
   show(0);
+
+  // Önce / sonra: sürükle ya da üstünde gez
+  const ba = document.getElementById('once-sonra');
+  const setX = x => { const r = ba.getBoundingClientRect(); ba.style.setProperty('--x', Math.min(98, Math.max(2, (x - r.left) / r.width * 100)) + '%'); };
+  let drag = false;
+  ba.addEventListener('pointerdown', e => { drag = true; setX(e.clientX); });
+  addEventListener('pointerup', () => drag = false);
+  ba.addEventListener('pointermove', e => { if (drag || e.pointerType === 'mouse') setX(e.clientX); });
+
+  // Şantiye sekmeleri: boş sekme gösterilmez
+  const cards = [...document.querySelectorAll('.card')], tabs = [...document.querySelectorAll('.tabs button')];
+  tabs.forEach(t => {
+    if (t.dataset.f !== 'tumu' && !cards.some(c => c.dataset.st === t.dataset.f)) t.hidden = true;
+    t.addEventListener('click', () => {
+      tabs.forEach(b => b.classList.toggle('on', b === t));
+      cards.forEach(c => c.hidden = t.dataset.f !== 'tumu' && c.dataset.st !== t.dataset.f);
+    });
+  });
 
   // Bölüm noktaları
   const dots = [...document.querySelectorAll('.dots a')], secs = dots.map(d => document.querySelector(d.getAttribute('href')));
