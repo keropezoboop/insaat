@@ -60,7 +60,13 @@
 
   /* Hero */
   .hero { position: relative; height: 100vh; height: 100svh; min-height: 600px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; text-align: center; overflow: hidden; }
-  .hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.1); animation: zoom 24s ease-out forwards; }
+  .bgv { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .bar-r { display: flex; align-items: center; gap: 20px; }
+  .pp { width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(236,234,230,.6); background: none; cursor: pointer; position: relative; }
+  .pp::before, .pp::after { content: ""; position: absolute; top: 11px; width: 2px; height: 11px; background: var(--text); }
+  .pp::before { left: 13px; } .pp::after { left: 18px; }
+  .pp.paused::before { left: 13px; width: 0; height: 0; background: none; border-left: 9px solid var(--text); border-top: 6px solid transparent; border-bottom: 6px solid transparent; }
+  .pp.paused::after { display: none; }
   @keyframes zoom { to { transform: scale(1); } }
   .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,14,15,.5) 0%, rgba(13,14,15,0) 25%, rgba(13,14,15,0) 55%, rgba(13,14,15,.75) 100%); }
   .hero-in { position: relative; z-index: 1; padding: 0 20px 124px; display: flex; flex-direction: column; align-items: center; gap: 22px; }
@@ -76,10 +82,9 @@
   @keyframes lift { to { transform: translateY(-100%); visibility: hidden; } }
 
   /* Second sequence (Elliman: word by word) */
-  .seq { position: relative; height: 300vh; }
-  .seq-in { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-  .seq-in > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .seq-in::after { content: ""; position: absolute; inset: 0; background: rgba(13,14,15,.5); }
+  .seq { position: relative; }
+  .seq-in { position: relative; height: 100vh; height: 100svh; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .seq-in::after { content: ""; position: absolute; inset: 0; background: rgba(13,14,15,.3); }
   .words { position: relative; z-index: 1; display: grid; text-align: center; }
   .words span { grid-area: 1 / 1; font-size: clamp(80px, 14vw, 230px); opacity: 0; transform: translateY(40px); transition: opacity .6s ease, transform .6s ease; }
   .words span.on { opacity: 1; transform: none; }
@@ -190,7 +195,7 @@
     .mbar a:last-child { background: var(--rust); color: var(--ink); }
   }
   @media (prefers-reduced-motion: reduce) {
-    .hero > img, .hero-line, .hero-cta { animation: none; opacity: 1; transform: none; }
+    .hero-line, .hero-cta { animation: none; opacity: 1; transform: none; }
     .intro { display: none; }
     .words span { transition: none; }
     .rv { opacity: 1; transform: none; transition: none; }
@@ -222,7 +227,7 @@
 </nav>
 
 <div class="hero" id="top">
-  <img src="img/hero.jpg" alt="">
+  <video class="bgv" autoplay muted loop playsinline preload="auto" poster="video/hero-poster.jpg" data-mobile="video/hero-mobil.mp4" data-mobile-poster="video/hero-mobil-poster.jpg" aria-hidden="true"><source src="video/hero.mp4" type="video/mp4"></video>
   <div class="hero-in">
     <h1 class="hero-line">Sağlam yapı, sahada başlar</h1>
     <a href="#ikinci" class="hero-cta mono">Keşfet</a>
@@ -230,14 +235,14 @@
   <div class="hero-bar">
     <div class="wrap mono">
       <nav><a href="#asamalar">Aşamalar</a><a href="#hizmetler">Hizmetler</a><a href="#santiyeler">Şantiyeler</a></nav>
-      <span>40.21° K · 28.97° D</span>
+      <span class="bar-r"><span>40.21° K · 28.97° D</span><button class="pp" aria-label="Videoyu durdur / oynat"></button></span>
     </div>
   </div>
 </div>
 
 <section class="seq" id="ikinci">
   <div class="seq-in">
-    <img src="img/h-donati.jpg" alt="">
+    <video class="bgv" muted loop playsinline preload="metadata" poster="video/seq-poster.jpg" data-mobile="video/seq-mobil.mp4" data-mobile-poster="video/seq-mobil-poster.jpg" aria-hidden="true"><source src="video/seq.mp4" type="video/mp4"></video>
     <div class="words cond" aria-label="Planla, inşa et, teslim et">
       <span class="on">Planla</span><span>İnşa et</span><span>Teslim et</span>
     </div>
@@ -352,15 +357,27 @@
 
   setTimeout(() => document.body.classList.remove('loading'), matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 2300);
 
-  // İkinci sekans: kaydırdıkça kelime kelime
+  // Videolar: telefonda dikey kesim, ekrandayken oynat
+  const mobile = matchMedia('(max-width: 900px) and (orientation: portrait)').matches;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('video.bgv').forEach(v => {
+    if (mobile) { v.poster = v.dataset.mobilePoster; v.querySelector('source').src = v.dataset.mobile; v.load(); }
+    if (reduce) { v.removeAttribute('autoplay'); v.pause(); return; }
+    new IntersectionObserver(([e]) => { e.isIntersecting ? v.play().catch(() => {}) : v.pause(); }, { threshold: .25 }).observe(v);
+  });
+  const heroV = document.querySelector('.hero video'), pp = document.querySelector('.pp');
+  pp.addEventListener('click', () => { heroV.paused ? heroV.play() : heroV.pause(); pp.classList.toggle('paused', heroV.paused); });
+
+  // İkinci ekran: kelimeler sırayla, kendiliğinden
   const seq = document.getElementById('ikinci'), words = [...seq.querySelectorAll('.words span')], prog = [...seq.querySelectorAll('.seq-prog i')];
-  const seqStep = () => {
-    const r = seq.getBoundingClientRect(), t = Math.min(.999, Math.max(0, -r.top / (r.height - innerHeight)));
-    const k = Math.floor(t * words.length);
-    words.forEach((w, i) => { w.classList.toggle('on', i === k); w.classList.toggle('past', i < k); });
-    prog.forEach((p, i) => p.classList.toggle('on', i <= k));
-  };
-  addEventListener('scroll', seqStep, { passive: true }); seqStep();
+  let k = 0, timer = null;
+  const show = i => { words.forEach((w, j) => { w.classList.toggle('on', j === i); w.classList.toggle('past', j !== i && w.classList.contains('on')); }); prog.forEach((p, j) => p.classList.toggle('on', j <= i)); };
+  const tick = () => { k = (k + 1) % words.length; if (k === 0) words.forEach(w => w.classList.remove('past')); show(k); };
+  new IntersectionObserver(([e]) => {
+    if (e.isIntersecting && !timer && !reduce) { k = 0; show(0); timer = setInterval(tick, 2200); }
+    else if (!e.isIntersecting) { clearInterval(timer); timer = null; }
+  }, { threshold: .5 }).observe(seq);
+  show(0);
 
   // Bölüm noktaları
   const dots = [...document.querySelectorAll('.dots a')], secs = dots.map(d => document.querySelector(d.getAttribute('href')));
