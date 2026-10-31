@@ -175,6 +175,20 @@
   .next .pill { display: inline-block; margin-top: 44px; border: 1px solid rgba(236,234,230,.55); padding: 14px 32px; transition: background .3s, border-color .3s; }
   .next .pill:hover { background: var(--rust); border-color: var(--rust); }
 
+  /* Sahanın içinden (Elliman: The world of Elliman) */
+  .world { position: relative; z-index: 2; height: 100vh; height: 100svh; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; background: #3a2015; }
+  .world img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.12); animation: drift 24s ease-out forwards; animation-play-state: paused; }
+  .world.in img { animation-play-state: running; }
+  @keyframes drift { to { transform: scale(1); } }
+  .world::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(13,14,15,.72) 0%, rgba(13,14,15,.5) 70%), linear-gradient(180deg, rgba(58,32,21,.5) 0%, rgba(58,32,21,0) 40%, rgba(58,32,21,.7) 100%); }
+  .world-in { position: relative; z-index: 1; padding: 0 24px; }
+  .world .eyebrow { font-family: var(--lite); font-weight: 300; font-size: clamp(16px, 1.6vw, 22px); letter-spacing: .18em; text-transform: uppercase; }
+  .world h2 { margin-top: 10px; font-size: clamp(40px, 6.4vw, 96px); letter-spacing: .2em; margin-right: -.2em; }
+  .world p { margin: 22px auto 0; max-width: 46ch; color: var(--text-2); font-size: clamp(15px, 1.2vw, 18px); }
+  .world .pill { display: inline-block; margin-top: 36px; border: 1px solid rgba(236,234,230,.4); padding: 14px 32px; color: var(--text-2); }
+  .world .pill small { color: var(--rust-soft); }
+  #hizmetler { background: linear-gradient(180deg, #3a2015 0%, #2b1a12 20%, #15120f 55%, var(--bg) 100%); }
+
   /* Contact */
   .contact { padding: 140px 0 120px; border-top: 1px solid var(--line); position: relative; z-index: 2; background: var(--bg); }
   .c-grid { display: grid; grid-template-columns: 7fr 5fr; gap: 80px; align-items: start; }
@@ -252,6 +266,7 @@
     .intro { display: none; }
     .words span { transition: none; }
     .rv { opacity: 1; transform: none; transition: none; }
+    .world img { animation: none; transform: none; }
   }
 </style>
 </head>
@@ -276,7 +291,7 @@
 </div>
 
 <nav class="dots" aria-hidden="true">
-  <a href="#top" class="on"></a><a href="#ikinci"></a><a href="#asamalar"></a><a href="#once-sonra"></a><a href="#santiyeler"></a><a href="#hizmetler"></a><a href="#iletisim"></a>
+  <a href="#top" class="on"></a><a href="#ikinci"></a><a href="#asamalar"></a><a href="#once-sonra"></a><a href="#santiyeler"></a><a href="#saha"></a><a href="#hizmetler"></a><a href="#iletisim"></a>
 </nav>
 
 <div class="hero" id="top">
@@ -355,6 +370,16 @@
     </div>
     <span class="tag">Temsili görseller · gerçek bilgiler gelecek</span><br>
     <a href="#iletisim" class="pill">Projenizi konuşalım</a>
+  </div>
+</section>
+
+<section class="world" id="saha" aria-label="Sahanın içinden">
+  <img src="img/hikaye.jpg" alt="" loading="lazy">
+  <div class="world-in">
+    <div class="eyebrow">Sahanın içinden</div>
+    <h2 class="cond">Ozan İskender</h2>
+    <p>Yapılarımızı ayakta tutan şantiyelerin, insanların ve emeğin içine girin.</p>
+    <span class="pill">Şantiye günlüğü <small>· yakında</small></span>
   </div>
 </section>
 
@@ -453,6 +478,9 @@
   ba.addEventListener('pointerdown', e => { drag = true; setX(e.clientX); });
   addEventListener('pointerup', () => drag = false);
   ba.addEventListener('pointermove', e => { if (drag || e.pointerType === 'mouse') setX(e.clientX); });
+
+  // Sahanın içinden: ekrana girince yavaş yakınlaşma
+  new IntersectionObserver(([e]) => { if (e.isIntersecting) e.target.classList.add('in'); }, { threshold: .3 }).observe(document.getElementById('saha'));
 
   // Şantiye sekmeleri: boş sekme gösterilmez
   const cards = [...document.querySelectorAll('.card')], tabs = [...document.querySelectorAll('.tabs button')];
