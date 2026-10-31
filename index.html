@@ -18,6 +18,8 @@
     --muted: #85827c;
     --rust: #d2572c;
     --rust-soft: #e8825c;
+    --copper: #9c5a36;
+    --copper-deep: #1a120e;
     --line: rgba(236,234,230,.12);
     --paper: #e4e0d9;
     --paper-2: #d8d3cb;
@@ -124,8 +126,7 @@
   .l-head h2 { font-size: clamp(34px, 4.4vw, 64px); }
   .l-head h2 em { font-style: normal; color: var(--rust-soft); }
   .rows { border-top: 1px solid var(--line); }
-  .r { display: grid; grid-template-columns: 90px 1fr auto; align-items: center; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--line); cursor: default; transition: padding .35s, color .25s; }
-  .r .idx { color: var(--muted); }
+  .r { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--line); cursor: default; transition: padding .35s, color .25s; }
   .r .t { font-family: var(--lite); font-weight: 300; font-size: clamp(24px, 2.8vw, 40px); letter-spacing: .1em; text-transform: uppercase; line-height: 1.1; }
   .r .meta { display: block; margin-top: 10px; font-family: var(--lite); font-weight: 400; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--text-2); }
   .r .meta b { font-weight: 400; color: var(--muted); padding: 0 .7em; }
@@ -153,7 +154,7 @@
   .ba-cap .meta b, .card .meta b { font-weight: 400; color: var(--muted); padding: 0 .7em; }
 
   /* Sıradaki yapı sizin (Elliman: The next move is yours) */
-  .next { position: relative; z-index: 2; background: linear-gradient(180deg, var(--bg) 0%, #15120f 40%, #2b1a12 78%, #3a2015 100%); padding: 110px 0 120px; text-align: center; border-top: 1px solid var(--line); }
+  .next { position: relative; z-index: 2; background: linear-gradient(180deg, var(--copper) 0%, #6b3b24 22%, #3a2216 50%, var(--copper-deep) 80%, #110d0b 100%); padding: 110px 0 120px; text-align: center; border-top: 1px solid var(--line); }
   .next .eyebrow { font-family: var(--lite); font-size: 14px; letter-spacing: .2em; text-transform: uppercase; }
   .next h2 { margin-top: 14px; font-size: clamp(32px, 4.4vw, 64px); }
   .next .vline { width: 1px; height: 110px; background: var(--text); margin: 36px auto 40px; opacity: .8; }
@@ -176,24 +177,29 @@
   .next .pill:hover { background: var(--rust); border-color: var(--rust); }
 
   /* Sahanın içinden (Elliman: The world of Elliman) */
-  .world { position: relative; z-index: 2; height: 100vh; height: 100svh; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; background: #3a2015; }
+  .world { position: relative; z-index: 2; height: 100vh; height: 100svh; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; background: #110d0b; }
   .world img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.12); animation: drift 24s ease-out forwards; animation-play-state: paused; }
   .world.in img { animation-play-state: running; }
   @keyframes drift { to { transform: scale(1); } }
-  .world::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(13,14,15,.72) 0%, rgba(13,14,15,.5) 70%), linear-gradient(180deg, rgba(58,32,21,.5) 0%, rgba(58,32,21,0) 40%, rgba(58,32,21,.7) 100%); }
+  .world::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(13,14,15,.72) 0%, rgba(13,14,15,.5) 70%), linear-gradient(180deg, rgba(17,13,11,.7) 0%, rgba(17,13,11,0) 30%, rgba(17,13,11,0) 70%, rgba(17,13,11,.75) 100%); }
   .world-in { position: relative; z-index: 1; padding: 0 24px; }
   .world .eyebrow { font-family: var(--lite); font-weight: 300; font-size: clamp(16px, 1.6vw, 22px); letter-spacing: .18em; text-transform: uppercase; }
   .world h2 { margin-top: 10px; font-size: clamp(40px, 6.4vw, 96px); letter-spacing: .2em; margin-right: -.2em; }
   .world p { margin: 22px auto 0; max-width: 46ch; color: var(--text-2); font-size: clamp(15px, 1.2vw, 18px); }
-  .world .pill { display: inline-block; margin-top: 36px; border: 1px solid rgba(236,234,230,.4); padding: 14px 32px; color: var(--text-2); }
-  .world .pill small { color: var(--rust-soft); }
-  #hizmetler { background: linear-gradient(180deg, #3a2015 0%, #2b1a12 20%, #15120f 55%, var(--bg) 100%); }
+  #hizmetler { border-top: 0; background: linear-gradient(180deg, #110d0b 0%, var(--copper-deep) 25%, #3a2216 55%, #6b3b24 80%, var(--copper) 100%); }
+  #hizmetler .r:hover { color: #f6dcc8; }
 
   /* Contact */
-  .contact { padding: 140px 0 120px; border-top: 1px solid var(--line); position: relative; z-index: 2; background: var(--bg); }
+  .contact { padding: 140px 0 120px; position: relative; z-index: 2; background: var(--copper); }
+  .contact h2 em { color: #f6dcc8; }
+  .contact .c-info .k { color: rgba(246,220,200,.75); }
+  .contact .c-info small { color: rgba(246,234,224,.8); }
+  .contact form { border-top-color: #f6dcc8; }
+  .contact .btn { background: var(--text); color: var(--ink); }
+  .contact .btn:hover { background: #f6dcc8; }
   .c-grid { display: grid; grid-template-columns: 7fr 5fr; gap: 80px; align-items: start; }
   .contact h2 { font-size: clamp(38px, 5vw, 76px); }
-  .contact h2 em { font-style: normal; color: var(--rust-soft); display: block; }
+  .contact h2 em { font-style: normal; display: block; }
   .c-info { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; }
   .c-info .k { color: var(--muted); margin-bottom: 6px; }
   .c-info .v { font-family: var(--lite); font-weight: 300; font-size: 22px; letter-spacing: .08em; text-transform: uppercase; line-height: 1.1; }
@@ -239,7 +245,7 @@
     .chap-top { left: 20px; right: 20px; top: 92px; }
     .chap p { padding: 0 24px; }
     .r { grid-template-columns: 1fr 96px; gap: 6px 16px; }
-    .r .idx { grid-column: 1 / -1; }
+    .r .t { grid-column: 1; }
     .r .d { text-align: left; grid-column: 1; }
     .ba-top, .ba-lab.l { left: 20px; } .ba-top { right: 20px; top: 92px; justify-content: center; } .ba-top > span:first-child { display: none; } .ba-lab.r { right: 20px; }
     .ba-cap { bottom: 96px; padding: 0 20px; }
@@ -379,7 +385,6 @@
     <div class="eyebrow">Sahanın içinden</div>
     <h2 class="cond">Ozan İskender</h2>
     <p>Yapılarımızı ayakta tutan şantiyelerin, insanların ve emeğin içine girin.</p>
-    <span class="pill">Şantiye günlüğü <small>· yakında</small></span>
   </div>
 </section>
 
@@ -390,10 +395,10 @@
       <span class="tag">Taslak · kapsam Ozan'la doğrulanacak</span>
     </div>
     <div class="rows">
-      <div class="r" data-img="img/h-statik.jpg"><span class="idx mono">02.1</span><span class="t">Statik proje</span><span class="d">Taşıyıcı sistem, hesaplar ve uygulama projeleri.</span><img class="thumb" src="img/h-statik.jpg" alt="" loading="lazy"></div>
-      <div class="r" data-img="img/h-saha.jpg"><span class="idx mono">02.2</span><span class="t">Şantiye şefliği</span><span class="d">Müteahhidin yanında, işin sahada projeye uygun ilerlemesi.</span><img class="thumb" src="img/h-saha.jpg" alt="" loading="lazy"></div>
-      <div class="r" data-img="img/h-donati.jpg"><span class="idx mono">02.3</span><span class="t">Fenni mesuliyet</span><span class="d">Yapının mevzuata ve projesine uygunluğunun takibi.</span><img class="thumb" src="img/h-donati.jpg" alt="" loading="lazy"></div>
-      <div class="r" data-img="img/h-uygulama.jpg"><span class="idx mono">02.4</span><span class="t">Uygulama</span><span class="d">Ekiplerin, malzemenin ve takvimin sahada birlikte yürümesi.</span><img class="thumb" src="img/h-uygulama.jpg" alt="" loading="lazy"></div>
+      <div class="r" data-img="img/h-statik.jpg"><span class="t">Statik proje</span><span class="d">Taşıyıcı sistem, hesaplar ve uygulama projeleri.</span><img class="thumb" src="img/h-statik.jpg" alt="" loading="lazy"></div>
+      <div class="r" data-img="img/h-saha.jpg"><span class="t">Şantiye şefliği</span><span class="d">Müteahhidin yanında, işin sahada projeye uygun ilerlemesi.</span><img class="thumb" src="img/h-saha.jpg" alt="" loading="lazy"></div>
+      <div class="r" data-img="img/h-donati.jpg"><span class="t">Fenni mesuliyet</span><span class="d">Yapının mevzuata ve projesine uygunluğunun takibi.</span><img class="thumb" src="img/h-donati.jpg" alt="" loading="lazy"></div>
+      <div class="r" data-img="img/h-uygulama.jpg"><span class="t">Uygulama</span><span class="d">Ekiplerin, malzemenin ve takvimin sahada birlikte yürümesi.</span><img class="thumb" src="img/h-uygulama.jpg" alt="" loading="lazy"></div>
     </div>
   </div>
 </section>
@@ -442,7 +447,7 @@
   // Snøhetta tarzı önizleme
   const peek = document.getElementById('peek'), pImg = peek.querySelector('img'), pTxt = peek.querySelector('span');
   document.querySelectorAll('.r[data-img]').forEach(r => {
-    r.addEventListener('mouseenter', () => { pImg.src = r.dataset.img; pTxt.textContent = r.querySelector('.idx').textContent; peek.classList.add('on'); });
+    r.addEventListener('mouseenter', () => { pImg.src = r.dataset.img; pTxt.textContent = r.querySelector('.t').textContent; peek.classList.add('on'); });
     r.addEventListener('mouseleave', () => peek.classList.remove('on'));
     r.addEventListener('mousemove', e => { peek.style.left = e.clientX + 'px'; peek.style.top = e.clientY + 'px'; });
   });
